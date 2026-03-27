@@ -32,7 +32,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Player can see clue numbers in the correct cells, with clue cells visually distinct from empty cells.
   3. Player can see the current puzzle id, difficulty, and progression context while playing.
   4. Player can access the full shipped set of 40 handcrafted starter-pack puzzles through the app.
-**Plans**: TBD
+**Plans**: 4 plans
+Plans:
+- [ ] 01-01-PLAN.md — Bootstrap the React/TypeScript app, shared contracts, and Wave 0 smoke test
+- [ ] 01-02-PLAN.md — Build the typed starter-pack adapter and pack-integrity tests
+- [ ] 01-03-PLAN.md — Build the read-only board renderer and integrated puzzle shell
+- [ ] 01-04-PLAN.md — Add full-pack navigation and premium responsive shell polish
 **UI hint**: yes
 
 ### Phase 2: Deterministic Rectangle Rules

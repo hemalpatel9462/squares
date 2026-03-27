@@ -48,7 +48,11 @@ Plans:
   1. Invalid rectangles are rejected when they leave the board, overlap another rectangle, include another clue, miss the selected clue, or have the wrong area.
   2. The same placement input always produces the same validation result independent of the UI.
   3. The system can determine when the entire board is correctly covered with valid non-overlapping rectangles and all clues are satisfied.
-**Plans**: TBD
+**Plans**: 3 plans
+Plans:
+- [ ] 02-01-PLAN.md — Lock the public rules contracts, deterministic issue ordering, and reusable rule-test scaffolding
+- [ ] 02-02-PLAN.md — Implement full placement diagnostics and deterministic primary-reason wrappers
+- [ ] 02-03-PLAN.md — Implement full board analysis and verify shipped starter-pack solutions through rules-first evaluation
 
 ### Phase 3: Live Rectangle Placement
 **Goal**: Players can create rectangles through direct manipulation and get instant visual feedback before committing.

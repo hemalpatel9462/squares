@@ -37,7 +37,7 @@ Plans:
 - [x] 01-01-PLAN.md — Bootstrap the React/TypeScript app, shared contracts, and Wave 0 smoke test
 - [x] 01-02-PLAN.md — Build the typed starter-pack adapter and pack-integrity tests
 - [x] 01-03-PLAN.md — Build the read-only board renderer and integrated puzzle shell
-- [ ] 01-04-PLAN.md — Add full-pack navigation and premium responsive shell polish
+- [x] 01-04-PLAN.md — Add full-pack navigation and premium responsive shell polish
 **UI hint**: yes
 
 ### Phase 2: Deterministic Rectangle Rules
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Starter Pack Board Shell | 0/TBD | Not started | - |
+| 1. Starter Pack Board Shell | 4/4 | Complete | 2026-03-27 |
 | 2. Deterministic Rectangle Rules | 0/TBD | Not started | - |
 | 3. Live Rectangle Placement | 0/TBD | Not started | - |
 | 4. Correction Controls | 0/TBD | Not started | - |

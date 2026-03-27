@@ -3,14 +3,13 @@ import { describe, expect, it } from "vitest";
 import App from "@/App";
 
 describe("App shell", () => {
-  it("renders the placeholder starter pack shell", () => {
+  it("renders the initial starter-pack puzzle shell", () => {
     render(<App />);
 
+    expect(screen.getByText("Puzzle easy-001")).toBeInTheDocument();
+    expect(screen.getByText("Easy")).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: /starter pack board shell/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/the shell is intentionally static/i),
+      screen.getByRole("img", { name: /read-only 4 by 4 puzzle board/i }),
     ).toBeInTheDocument();
   });
 });

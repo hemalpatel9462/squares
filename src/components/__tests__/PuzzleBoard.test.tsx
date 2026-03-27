@@ -49,7 +49,13 @@ describe("App", () => {
     expect(screen.getByText("Easy")).toBeInTheDocument();
     expect(screen.getByText("Puzzle 1 of 40")).toBeInTheDocument();
 
-    const board = screen.getByRole("img", { name: /read-only 4 by 4 puzzle board/i });
+    const board = screen.getAllByRole("img", { name: /read-only 4 by 4 puzzle board/i }).at(-1);
+    expect(board).toBeDefined();
+
+    if (!board) {
+      throw new Error("Expected the app board to render");
+    }
+
     const boardCells = board.querySelectorAll("[data-cell-kind]");
 
     expect(boardCells).toHaveLength(16);

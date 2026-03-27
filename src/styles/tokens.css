@@ -5,21 +5,25 @@
   color: #1f2a2c;
   background:
     radial-gradient(circle at top left, rgba(197, 109, 61, 0.18), transparent 28%),
-    radial-gradient(circle at top right, rgba(95, 125, 118, 0.18), transparent 24%),
+    radial-gradient(circle at top right, rgba(217, 224, 220, 0.55), transparent 24%),
     linear-gradient(180deg, #f7f3eb 0%, #e7ded0 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --color-bg: #f3eee4;
-  --color-bg-soft: #f7f3eb;
+  --color-dominant: #F3EEE4;
+  --color-secondary: #D9E0DC;
+  --color-accent: #C56D3D;
+  --color-destructive: #B44C3C;
+  --color-backdrop-start: #F7F3EB;
+  --color-backdrop-end: #E7DED0;
   --color-surface: rgba(243, 238, 228, 0.84);
-  --color-surface-strong: #d9e0dc;
   --color-border: rgba(49, 61, 64, 0.12);
   --color-text: #1f2a2c;
   --color-text-muted: rgba(31, 42, 44, 0.7);
-  --color-accent: #c56d3d;
+  --color-text-inverse: #fffaf2;
+
   --shadow-shell: 0 24px 60px rgba(47, 37, 29, 0.16);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.45);
 
@@ -32,6 +36,13 @@
   --space-3xl: 64px;
 
   --radius-cell: 8px;
-  --radius-pill: 12px;
+  --radius-chip: 12px;
   --radius-shell: 20px;
+
+  --font-label-size: 14px;
+  --font-body-size: 16px;
+  --font-heading-size: 20px;
+  --font-display-size: 28px;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
 }

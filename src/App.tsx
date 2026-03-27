@@ -1,10 +1,13 @@
+import { useState } from "react";
+
 import PuzzleShell from "@/components/PuzzleShell";
 import { getPuzzleByIndex } from "@/data/starterPack";
 
-const initialPuzzle = getPuzzleByIndex(0);
-
 export default function App() {
-  if (!initialPuzzle) {
+  const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState(0);
+  const currentPuzzle = getPuzzleByIndex(currentPuzzleIndex);
+
+  if (!currentPuzzle) {
     return (
       <main className="app-shell">
         <section
@@ -27,7 +30,17 @@ export default function App() {
     <main className="app-shell">
       <div aria-hidden="true" className="ambient-glow ambient-glow-left" />
       <div aria-hidden="true" className="ambient-glow ambient-glow-right" />
-      <PuzzleShell puzzle={initialPuzzle} />
+      <PuzzleShell
+        canGoNext={getPuzzleByIndex(currentPuzzleIndex + 1) !== undefined}
+        canGoPrevious={currentPuzzleIndex > 0}
+        onNext={() => {
+          setCurrentPuzzleIndex((index) => index + 1);
+        }}
+        onPrevious={() => {
+          setCurrentPuzzleIndex((index) => index - 1);
+        }}
+        puzzle={currentPuzzle}
+      />
     </main>
   );
 }

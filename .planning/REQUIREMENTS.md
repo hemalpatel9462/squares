@@ -31,7 +31,7 @@
 
 ### Progression And Content
 
-- [ ] **PACK-01**: System loads puzzles from the starter-pack JSON file
+- [x] **PACK-01**: System loads puzzles from the starter-pack JSON file
 - [ ] **PACK-02**: System ships with the current 40 handcrafted puzzles from the starter pack
 - [ ] **PACK-03**: Player can browse or select puzzles by difficulty across easy, medium, and hard groups
 - [ ] **PACK-04**: System tracks completion state per puzzle
@@ -97,7 +97,7 @@
 | RULE-05 | Phase 2 | Pending |
 | RULE-06 | Phase 2 | Pending |
 | RULE-07 | Phase 2 | Pending |
-| PACK-01 | Phase 1 | Pending |
+| PACK-01 | Phase 1 | Complete |
 | PACK-02 | Phase 1 | Pending |
 | PACK-03 | Phase 5 | Pending |
 | PACK-04 | Phase 6 | Pending |

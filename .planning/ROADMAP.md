@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Player can access the full shipped set of 40 handcrafted starter-pack puzzles through the app.
 **Plans**: 4 plans
 Plans:
-- [ ] 01-01-PLAN.md — Bootstrap the React/TypeScript app, shared contracts, and Wave 0 smoke test
+- [x] 01-01-PLAN.md — Bootstrap the React/TypeScript app, shared contracts, and Wave 0 smoke test
 - [ ] 01-02-PLAN.md — Build the typed starter-pack adapter and pack-integrity tests
 - [ ] 01-03-PLAN.md — Build the read-only board renderer and integrated puzzle shell
 - [ ] 01-04-PLAN.md — Add full-pack navigation and premium responsive shell polish

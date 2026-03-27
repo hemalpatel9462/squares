@@ -82,42 +82,42 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BOARD-01 | Phase TBD | Pending |
-| BOARD-02 | Phase TBD | Pending |
-| BOARD-03 | Phase TBD | Pending |
-| PLAY-01 | Phase TBD | Pending |
-| PLAY-02 | Phase TBD | Pending |
-| PLAY-03 | Phase TBD | Pending |
-| PLAY-04 | Phase TBD | Pending |
-| PLAY-05 | Phase TBD | Pending |
-| RULE-01 | Phase TBD | Pending |
-| RULE-02 | Phase TBD | Pending |
-| RULE-03 | Phase TBD | Pending |
-| RULE-04 | Phase TBD | Pending |
-| RULE-05 | Phase TBD | Pending |
-| RULE-06 | Phase TBD | Pending |
-| RULE-07 | Phase TBD | Pending |
-| PACK-01 | Phase TBD | Pending |
-| PACK-02 | Phase TBD | Pending |
-| PACK-03 | Phase TBD | Pending |
-| PACK-04 | Phase TBD | Pending |
-| PACK-05 | Phase TBD | Pending |
-| SAVE-01 | Phase TBD | Pending |
-| SAVE-02 | Phase TBD | Pending |
-| SAVE-03 | Phase TBD | Pending |
-| TUT-01 | Phase TBD | Pending |
-| TUT-02 | Phase TBD | Pending |
-| TUT-03 | Phase TBD | Pending |
-| UX-01 | Phase TBD | Pending |
-| UX-02 | Phase TBD | Pending |
-| UX-03 | Phase TBD | Pending |
-| UX-04 | Phase TBD | Pending |
+| BOARD-01 | Phase 1 | Pending |
+| BOARD-02 | Phase 1 | Pending |
+| BOARD-03 | Phase 1 | Pending |
+| PLAY-01 | Phase 3 | Pending |
+| PLAY-02 | Phase 3 | Pending |
+| PLAY-03 | Phase 3 | Pending |
+| PLAY-04 | Phase 3 | Pending |
+| PLAY-05 | Phase 4 | Pending |
+| RULE-01 | Phase 2 | Pending |
+| RULE-02 | Phase 2 | Pending |
+| RULE-03 | Phase 2 | Pending |
+| RULE-04 | Phase 2 | Pending |
+| RULE-05 | Phase 2 | Pending |
+| RULE-06 | Phase 2 | Pending |
+| RULE-07 | Phase 2 | Pending |
+| PACK-01 | Phase 1 | Pending |
+| PACK-02 | Phase 1 | Pending |
+| PACK-03 | Phase 5 | Pending |
+| PACK-04 | Phase 6 | Pending |
+| PACK-05 | Phase 6 | Pending |
+| SAVE-01 | Phase 6 | Pending |
+| SAVE-02 | Phase 5 | Pending |
+| SAVE-03 | Phase 7 | Pending |
+| TUT-01 | Phase 7 | Pending |
+| TUT-02 | Phase 7 | Pending |
+| TUT-03 | Phase 7 | Pending |
+| UX-01 | Phase 8 | Pending |
+| UX-02 | Phase 8 | Pending |
+| UX-03 | Phase 3 | Pending |
+| UX-04 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 30 total
-- Mapped to phases: 0
-- Unmapped: 30 ⚠️
+- Mapped to phases: 30
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-27*
-*Last updated: 2026-03-27 after initial definition*
+*Last updated: 2026-03-27 after roadmap creation*

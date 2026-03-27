@@ -91,11 +91,13 @@ select {
 .puzzle-shell__content {
   display: grid;
   gap: var(--space-lg);
+  min-width: 0;
 }
 
 .puzzle-shell__header {
   display: grid;
   gap: var(--space-md);
+  min-width: 0;
   padding: var(--space-lg);
   border: 1px solid rgba(49, 61, 64, 0.08);
   border-radius: calc(var(--radius-shell) - 4px);
@@ -118,11 +120,13 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
+  min-width: 0;
 }
 
 .meta-pill {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
   min-height: 44px;
   padding: 10px 14px;
   border: 1px solid rgba(49, 61, 64, 0.08);
@@ -142,9 +146,11 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
+  min-width: 0;
 }
 
 .puzzle-navigator__button {
+  min-width: 0;
   min-height: 44px;
   padding: 10px 16px;
   border: 1px solid rgba(49, 61, 64, 0.12);
@@ -186,14 +192,18 @@ select {
 .puzzle-shell__board {
   display: flex;
   justify-content: center;
+  min-width: 0;
 }
 
 .board-card {
+  display: grid;
+  place-items: center;
   width: 100%;
   padding: clamp(var(--space-md), 2vw, var(--space-lg));
   border: 1px solid rgba(49, 61, 64, 0.08);
   border-radius: calc(var(--radius-shell) - 4px);
   background: rgba(255, 255, 255, 0.46);
+  min-width: 0;
 }
 
 .board-grid {
@@ -230,11 +240,13 @@ select {
 
   .hero-panel,
   .puzzle-shell {
-    padding: var(--space-md);
+    padding: 0;
   }
 
   .puzzle-shell__header {
     padding: var(--space-md);
+    border-width: 0 0 1px;
+    border-radius: calc(var(--radius-shell) - 1px) calc(var(--radius-shell) - 1px) 0 0;
   }
 
   .puzzle-shell__title {
@@ -242,15 +254,26 @@ select {
     line-height: 1.2;
   }
 
+  .puzzle-shell__content {
+    gap: 0;
+  }
+
+  .puzzle-shell__board {
+    padding: var(--space-sm);
+  }
+
   .board-card {
-    padding: var(--space-md);
+    padding: 0;
+    border-width: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .board-grid {
-    width: min(calc(100vw - 32px), 520px);
+    width: min(100%, min(calc(100vw - 32px), 520px));
   }
 
   .puzzle-navigator__button {
-    flex: 1 1 12rem;
+    flex: 1 1 10.5rem;
   }
 }

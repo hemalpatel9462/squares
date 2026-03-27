@@ -1,0 +1,37 @@
+:root {
+  font-family: Manrope, "Avenir Next", "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1f2a2c;
+  background:
+    radial-gradient(circle at top left, rgba(197, 109, 61, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(95, 125, 118, 0.18), transparent 24%),
+    linear-gradient(180deg, #f7f3eb 0%, #e7ded0 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-bg: #f3eee4;
+  --color-bg-soft: #f7f3eb;
+  --color-surface: rgba(243, 238, 228, 0.84);
+  --color-surface-strong: #d9e0dc;
+  --color-border: rgba(49, 61, 64, 0.12);
+  --color-text: #1f2a2c;
+  --color-text-muted: rgba(31, 42, 44, 0.7);
+  --color-accent: #c56d3d;
+  --shadow-shell: 0 24px 60px rgba(47, 37, 29, 0.16);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  --radius-cell: 8px;
+  --radius-pill: 12px;
+  --radius-shell: 20px;
+}

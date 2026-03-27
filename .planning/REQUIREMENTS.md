@@ -7,8 +7,8 @@
 
 ### Puzzle Board
 
-- [ ] **BOARD-01**: Player can open a puzzle and see an NxN grid for board sizes from 4x4 through 8x8
-- [ ] **BOARD-02**: Player can see clue numbers in their correct cells with clue cells visually distinguished from empty cells
+- [x] **BOARD-01**: Player can open a puzzle and see an NxN grid for board sizes from 4x4 through 8x8
+- [x] **BOARD-02**: Player can see clue numbers in their correct cells with clue cells visually distinguished from empty cells
 - [ ] **BOARD-03**: Player can see the current puzzle id, difficulty, and progression context while playing
 
 ### Placement Interaction
@@ -82,8 +82,8 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BOARD-01 | Phase 1 | Pending |
-| BOARD-02 | Phase 1 | Pending |
+| BOARD-01 | Phase 1 | Complete |
+| BOARD-02 | Phase 1 | Complete |
 | BOARD-03 | Phase 1 | Pending |
 | PLAY-01 | Phase 3 | Pending |
 | PLAY-02 | Phase 3 | Pending |

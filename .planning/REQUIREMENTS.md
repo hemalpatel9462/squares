@@ -13,9 +13,9 @@
 
 ### Placement Interaction
 
-- [ ] **PLAY-01**: Player can start a rectangle selection from a clue cell using mouse, touch, or pointer input
-- [ ] **PLAY-02**: Player can drag to preview the target rectangle before placement is confirmed
-- [ ] **PLAY-03**: Player receives immediate visual feedback showing whether the current preview is valid or invalid
+- [x] **PLAY-01**: Player can start a rectangle selection from a clue cell using mouse, touch, or pointer input
+- [x] **PLAY-02**: Player can drag to preview the target rectangle before placement is confirmed
+- [x] **PLAY-03**: Player receives immediate visual feedback showing whether the current preview is valid or invalid
 - [x] **PLAY-04**: Player can place a rectangle on release when the selection is valid
 - [ ] **PLAY-05**: Player can remove a placed rectangle, undo the last placement, and reset the current puzzle
 
@@ -53,8 +53,8 @@
 
 - [ ] **UX-01**: Core interactions feel usable on both desktop and mobile browsers
 - [ ] **UX-02**: Grid, clue text, and controls maintain readable contrast and touch-friendly hit targets
-- [ ] **UX-03**: Placement feedback feels clean and satisfying, with visible area and validity cues during drag
-- [ ] **UX-04**: Placement validation feedback appears immediately during interaction
+- [x] **UX-03**: Placement feedback feels clean and satisfying, with visible area and validity cues during drag
+- [x] **UX-04**: Placement validation feedback appears immediately during interaction
 
 ## v2 Requirements
 
@@ -85,9 +85,9 @@
 | BOARD-01 | Phase 1 | Complete |
 | BOARD-02 | Phase 1 | Complete |
 | BOARD-03 | Phase 1 | Complete |
-| PLAY-01 | Phase 3 | Pending |
-| PLAY-02 | Phase 3 | Pending |
-| PLAY-03 | Phase 3 | Pending |
+| PLAY-01 | Phase 3 | Complete |
+| PLAY-02 | Phase 3 | Complete |
+| PLAY-03 | Phase 3 | Complete |
 | PLAY-04 | Phase 3 | Complete |
 | PLAY-05 | Phase 4 | Pending |
 | RULE-01 | Phase 2 | Pending |
@@ -110,8 +110,8 @@
 | TUT-03 | Phase 7 | Pending |
 | UX-01 | Phase 8 | Pending |
 | UX-02 | Phase 8 | Pending |
-| UX-03 | Phase 3 | Pending |
-| UX-04 | Phase 3 | Pending |
+| UX-03 | Phase 3 | Complete |
+| UX-04 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 30 total

@@ -4,6 +4,7 @@ import {
   analyzePlacement,
   getPrimaryPlacementIssue,
   isPlacementValid,
+  type PlacementIssue,
 } from "@/rules";
 import { createPlacement, createPuzzleFixture } from "@/rules/__tests__/ruleTestUtils";
 
@@ -133,12 +134,14 @@ describe("rectangle rules contracts", () => {
     expect(isPlacementValid(analysis)).toBe(false);
   });
 
-  it.each([
+  const priorityCases: Array<[PlacementIssue[], PlacementIssue]> = [
     [["wrong_area", "out_of_bounds", "overlap"], "wrong_area"],
     [["contains_other_clue", "wrong_area", "overlap"], "contains_other_clue"],
     [["missing_origin_clue", "overlap"], "missing_origin_clue"],
     [["out_of_bounds", "overlap"], "out_of_bounds"],
-  ])(
+  ];
+
+  it.each(priorityCases)(
     "returns the deterministic primary issue when multiple failures apply",
     (issues, expected) => {
       expect(getPrimaryPlacementIssue(issues)).toBe(expected);

@@ -1,10 +1,11 @@
 ---
 phase: 04
 slug: correction-controls
-status: draft
-nyquist_compliant: false
-wave_0_complete: false
+status: passed
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-03-28
+updated: 2026-03-28
 ---
 
 # Phase 04 — Validation Strategy
@@ -38,10 +39,10 @@ created: 2026-03-28
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 04-01-01 | 01 | 1 | PLAY-05 | component interaction | `npm test -- --run src/components/__tests__/App.placement.test.tsx -t "remove"` | ❌ W0 | ⬜ pending |
-| 04-01-02 | 01 | 1 | PLAY-05 | component interaction | `npm test -- --run src/components/__tests__/App.placement.test.tsx -t "undo"` | ❌ W0 | ⬜ pending |
-| 04-01-03 | 01 | 1 | PLAY-05 | component interaction | `npm test -- --run src/components/__tests__/App.placement.test.tsx -t "reset"` | ❌ W0 | ⬜ pending |
-| 04-02-01 | 02 | 1 | PLAY-05 | regression component | `npm test -- --run src/components/__tests__/PuzzleBoard.interaction.test.tsx` | ✅ | ⬜ pending |
+| 04-01-01 | 01 | 1 | PLAY-05 | component interaction | `npm test -- --run src/components/__tests__/App.placement.test.tsx -t "remove"` | ✅ | ✅ green |
+| 04-01-02 | 01 | 1 | PLAY-05 | component interaction | `npm test -- --run src/components/__tests__/App.placement.test.tsx -t "undo"` | ✅ | ✅ green |
+| 04-01-03 | 01 | 1 | PLAY-05 | component interaction | `npm test -- --run src/components/__tests__/App.placement.test.tsx -t "reset"` | ✅ | ✅ green |
+| 04-02-01 | 02 | 1 | PLAY-05 | regression component | `npm test -- --run src/components/__tests__/PuzzleBoard.interaction.test.tsx` | ✅ | ✅ green |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -49,9 +50,9 @@ created: 2026-03-28
 
 ## Wave 0 Requirements
 
-- [ ] `src/components/__tests__/App.placement.test.tsx` — extend with remove, multi-step undo, and reset confirmation-path checks
-- [ ] `src/components/__tests__/testGeometry.ts` — keep geometry helpers aligned with correction interaction tests
-- [ ] `src/components/__tests__/PuzzleBoard.interaction.test.tsx` — add/remove-regression assertions to protect drag-preview behavior
+- [x] `src/components/__tests__/App.placement.test.tsx` — extend with remove, multi-step undo, and reset confirmation-path checks
+- [x] `src/components/__tests__/testGeometry.ts` — keep geometry helpers aligned with correction interaction tests
+- [x] `src/components/__tests__/PuzzleBoard.interaction.test.tsx` — add/remove-regression assertions to protect drag-preview behavior
 
 ---
 
@@ -66,11 +67,19 @@ created: 2026-03-28
 
 ## Validation Sign-Off
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 30s
-- [ ] `nyquist_compliant: true` set in frontmatter
+- [x] All tasks have `<automated>` verify or Wave 0 dependencies
+- [x] Sampling continuity: no 3 consecutive tasks without automated verify
+- [x] Wave 0 covers all MISSING references
+- [x] No watch-mode flags
+- [x] Feedback latency < 30s
+- [x] `nyquist_compliant: true` set in frontmatter
 
-**Approval:** pending
+**Approval:** approved
+
+## Validation Audit 2026-03-28
+
+| Metric | Count |
+|--------|-------|
+| Gaps found | 0 |
+| Resolved | 0 |
+| Escalated | 0 |

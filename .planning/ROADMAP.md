@@ -90,7 +90,10 @@ Plans:
   1. Player can browse or select puzzles by difficulty across easy, medium, and hard groups.
   2. Player returns to the last selected difficulty after reloading or reopening the app.
   3. Player can move from the browser into a chosen puzzle with that difficulty context still visible while playing.
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 05-01-PLAN.md — Build the dedicated difficulty-tab browser component with filtered puzzle selection and UI tests
+- [ ] 05-02-PLAN.md — Integrate browser-first App flow, selected-difficulty persistence, and browser-entry regression updates
 **UI hint**: yes
 
 ### Phase 6: Completion Tracking & Next Puzzle Flow

@@ -48,24 +48,26 @@ function getDragThreshold(pointerType: string): number {
   return pointerType === "touch" ? TOUCH_DRAG_THRESHOLD_PX : MOUSE_DRAG_THRESHOLD_PX;
 }
 
+function isFiniteNumber(value: number | undefined): value is number {
+  return typeof value === "number" && Number.isFinite(value);
+}
+
+function resolvePointerId(
+  pointerId: number | undefined,
+  activeSession: PointerDragSession | null,
+): number | undefined {
+  if (typeof pointerId === "number" && Number.isFinite(pointerId) && pointerId > 0) {
+    return pointerId;
+  }
+
+  return activeSession?.pointerId;
+}
+
 function pointToCell(clientX: number, clientY: number, rect: DOMRect, size: number): CellCoord {
   const col = Math.max(0, Math.min(size - 1, Math.floor(((clientX - rect.left) / rect.width) * size)));
   const row = Math.max(0, Math.min(size - 1, Math.floor(((clientY - rect.top) / rect.height) * size)));
 
   return { row, col };
-}
-
-function cellFromDataset(element: HTMLDivElement): CellCoord | null {
-  const { row, col } = element.dataset;
-
-  if (row === undefined || col === undefined) {
-    return null;
-  }
-
-  return {
-    row: Number.parseInt(row, 10),
-    col: Number.parseInt(col, 10),
-  };
 }
 
 function getRectangleCenterDistance(candidate: CandidatePlacement, target: CellCoord): number {
@@ -233,37 +235,46 @@ export function PuzzleBoard({
       pointerId: event.pointerId,
       pointerType: event.pointerType,
       origin,
-      startClientX: event.clientX,
-      startClientY: event.clientY,
+      startClientX: event.clientX ?? 0,
+      startClientY: event.clientY ?? 0,
       currentCell: origin,
       phase: "armed",
       preview: null,
     });
   }
 
-  function handleCellPointerMove(event: React.PointerEvent<HTMLDivElement>) {
+  function handlePointerMove(
+    pointerId: number | undefined,
+    clientX?: number,
+    clientY?: number,
+    targetCell?: CellCoord,
+  ) {
     const boardElement = boardRef.current;
     const current = sessionRef.current;
-    const clientX = event.clientX;
-    const clientY = event.clientY;
-    const pointerId = typeof event.pointerId === "number" ? event.pointerId : current?.pointerId;
+    const resolvedPointerId = resolvePointerId(pointerId, current);
 
-    if (!boardElement || !current || pointerId !== current.pointerId) {
+    if (!boardElement || !current || resolvedPointerId !== current.pointerId) {
       return;
     }
 
-    const rect = boardElement.getBoundingClientRect();
-    const fallbackCell = cellFromDataset(event.currentTarget);
-    const nextCell = typeof clientX === "number" && typeof clientY === "number"
-      ? pointToCell(clientX, clientY, rect, puzzle.size)
-      : fallbackCell ?? current.currentCell;
-    const moved = typeof clientX === "number" && typeof clientY === "number"
-      ? Math.hypot(clientX - current.startClientX, clientY - current.startClientY)
-      : nextCell.row !== current.origin.row || nextCell.col !== current.origin.col
-        ? Number.POSITIVE_INFINITY
+    const nextCell =
+      targetCell ??
+      (isFiniteNumber(clientX) && isFiniteNumber(clientY)
+        ? pointToCell(clientX, clientY, boardElement.getBoundingClientRect(), puzzle.size)
+        : null);
+
+    if (!nextCell) {
+      return;
+    }
+
+    const moved =
+      isFiniteNumber(clientX) && isFiniteNumber(clientY)
+        ? Math.hypot(clientX - current.startClientX, clientY - current.startClientY)
         : 0;
     const threshold = getDragThreshold(current.pointerType);
-    const shouldDrag = current.phase === "dragging" || moved >= threshold;
+    const crossedIntoNewCell =
+      nextCell.row !== current.origin.row || nextCell.col !== current.origin.col;
+    const shouldDrag = current.phase === "dragging" || moved >= threshold || crossedIntoNewCell;
 
     if (!shouldDrag) {
       syncSession({
@@ -274,7 +285,11 @@ export function PuzzleBoard({
     }
 
     if (current.phase === "armed" && "setPointerCapture" in boardElement) {
-      boardElement.setPointerCapture(pointerId);
+      try {
+        boardElement.setPointerCapture(resolvedPointerId);
+      } catch {
+        // Native listeners still keep drag tracking alive if pointer capture is unavailable.
+      }
     }
 
     syncSession({
@@ -302,16 +317,16 @@ export function PuzzleBoard({
     }
   }
 
-  function handleCellPointerUp(event: React.PointerEvent<HTMLDivElement>) {
+  function handlePointerUp(pointerId: number) {
     let nextFeedback: ReleaseFeedback = "none";
     const current = sessionRef.current;
-    const pointerId = typeof event.pointerId === "number" ? event.pointerId : current?.pointerId;
+    const resolvedPointerId = resolvePointerId(pointerId, current);
 
-    if (!current || pointerId !== current.pointerId) {
+    if (!current || resolvedPointerId !== current.pointerId) {
       return;
     }
 
-    releasePointerCapture(pointerId);
+    releasePointerCapture(resolvedPointerId);
 
     if (current.preview?.isValid) {
       onPlaceRectangle?.(current.preview.placement);
@@ -331,12 +346,12 @@ export function PuzzleBoard({
     }
   }
 
-  function handleCellPointerCancel(event: React.PointerEvent<HTMLDivElement>) {
+  function handlePointerCancel(pointerId?: number) {
     const current = sessionRef.current;
-    const pointerId = typeof event.pointerId === "number" ? event.pointerId : current?.pointerId;
+    const resolvedPointerId = resolvePointerId(pointerId, current);
 
-    if (pointerId !== undefined) {
-      releasePointerCapture(pointerId);
+    if (resolvedPointerId !== undefined) {
+      releasePointerCapture(resolvedPointerId);
     }
 
     clearInteraction();
@@ -361,6 +376,15 @@ export function PuzzleBoard({
         aria-label={`${puzzle.size} by ${puzzle.size} puzzle board`}
         className="board-grid"
         data-release-feedback={releaseFeedback}
+        onPointerCancel={(event) => {
+          handlePointerCancel(event.pointerId);
+        }}
+        onPointerMove={(event) => {
+          handlePointerMove(event.pointerId, event.clientX, event.clientY);
+        }}
+        onPointerUp={(event) => {
+          handlePointerUp(event.pointerId);
+        }}
         ref={boardRef}
         role="img"
         style={{ gridTemplateColumns: `repeat(${puzzle.size}, minmax(0, 1fr))` }}
@@ -384,7 +408,22 @@ export function PuzzleBoard({
               data-preview-origin={cell.isPreviewOrigin ? "true" : undefined}
               data-preview-state={previewState}
               data-row={cell.row}
-              onPointerCancel={handleCellPointerCancel}
+              onPointerEnter={(event) => {
+                handlePointerMove(
+                  event.pointerId,
+                  event.clientX,
+                  event.clientY,
+                  { row: cell.row, col: cell.col },
+                );
+              }}
+              onPointerMove={(event) => {
+                handlePointerMove(
+                  event.pointerId,
+                  event.clientX,
+                  event.clientY,
+                  { row: cell.row, col: cell.col },
+                );
+              }}
               onPointerDown={
                 isClue
                   ? (event) => {
@@ -392,8 +431,6 @@ export function PuzzleBoard({
                     }
                   : undefined
               }
-              onPointerMove={handleCellPointerMove}
-              onPointerUp={handleCellPointerUp}
             >
               {isClue ? cell.clueValue : null}
             </div>

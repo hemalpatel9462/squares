@@ -23,6 +23,7 @@ describe("PuzzleBoard live rectangle placement", () => {
 
     const geometry = mockBoardGeometry(board, puzzle.size);
     const origin = geometry.cellCenter({ row: 0, col: 0 });
+    const originTargetCell = board.querySelector("[data-row='0'][data-col='0']");
 
     fireEvent.pointerDown(originCell!, {
       pointerId: 1,
@@ -31,7 +32,7 @@ describe("PuzzleBoard live rectangle placement", () => {
       clientY: origin.clientY,
     });
 
-    fireEvent.pointerMove(board, {
+    fireEvent.pointerMove(originTargetCell!, {
       pointerId: 1,
       pointerType: "mouse",
       clientX: origin.clientX + 4,
@@ -58,7 +59,6 @@ describe("PuzzleBoard live rectangle placement", () => {
     const origin = geometry.cellCenter({ row: 0, col: 0 });
     const target = geometry.cellCenter({ row: 1, col: 1 });
     const targetCell = board.querySelector("[data-row='1'][data-col='1']");
-
     fireEvent.pointerDown(originCell!, {
       pointerId: 1,
       pointerType: "mouse",
@@ -97,7 +97,6 @@ describe("PuzzleBoard live rectangle placement", () => {
     const origin = geometry.cellCenter({ row: 0, col: 0 });
     const target = geometry.cellCenter({ row: 0, col: 1 });
     const targetCell = board.querySelector("[data-row='0'][data-col='1']");
-
     fireEvent.pointerDown(originCell!, {
       pointerId: 1,
       pointerType: "mouse",
@@ -134,7 +133,6 @@ describe("PuzzleBoard live rectangle placement", () => {
     const validTarget = geometry.cellCenter({ row: 1, col: 1 });
     const invalidTargetCell = board.querySelector("[data-row='0'][data-col='1']");
     const validTargetCell = board.querySelector("[data-row='1'][data-col='1']");
-
     fireEvent.pointerDown(originCell!, {
       pointerId: 1,
       pointerType: "mouse",
@@ -179,7 +177,6 @@ describe("PuzzleBoard live rectangle placement", () => {
     const origin = geometry.cellCenter({ row: 0, col: 0 });
     const target = geometry.cellCenter({ row: 1, col: 1 });
     const targetCell = board.querySelector("[data-row='1'][data-col='1']");
-
     fireEvent.pointerDown(originCell!, {
       pointerId: 1,
       pointerType: "mouse",
@@ -194,7 +191,7 @@ describe("PuzzleBoard live rectangle placement", () => {
       clientY: target.clientY,
     });
 
-    fireEvent.pointerUp(targetCell!, {
+    fireEvent.pointerUp(board, {
       pointerId: 1,
       pointerType: "mouse",
       clientX: target.clientX,
@@ -225,7 +222,6 @@ describe("PuzzleBoard live rectangle placement", () => {
       const origin = geometry.cellCenter({ row: 0, col: 0 });
       const validTarget = geometry.cellCenter({ row: 1, col: 1 });
       const validTargetCell = board.querySelector("[data-row='1'][data-col='1']");
-
       fireEvent.pointerDown(originCell!, {
         pointerId: 1,
         pointerType: "mouse",
@@ -242,7 +238,7 @@ describe("PuzzleBoard live rectangle placement", () => {
 
       expect(screen.getByText("Area 4")).toBeInTheDocument();
 
-      fireEvent.pointerUp(validTargetCell!, {
+      fireEvent.pointerUp(board, {
         pointerId: 1,
         pointerType: "mouse",
         clientX: validTarget.clientX,
@@ -266,7 +262,6 @@ describe("PuzzleBoard live rectangle placement", () => {
       const nextOriginCell = nextBoard.querySelector("[data-row='0'][data-col='0'][data-cell-kind='clue']");
       const invalidTarget = nextGeometry.cellCenter({ row: 0, col: 1 });
       const invalidTargetCell = nextBoard.querySelector("[data-row='0'][data-col='1']");
-
       fireEvent.pointerDown(nextOriginCell!, {
         pointerId: 2,
         pointerType: "mouse",
@@ -281,7 +276,7 @@ describe("PuzzleBoard live rectangle placement", () => {
         clientY: invalidTarget.clientY,
       });
 
-      fireEvent.pointerUp(invalidTargetCell!, {
+      fireEvent.pointerUp(nextBoard, {
         pointerId: 2,
         pointerType: "mouse",
         clientX: invalidTarget.clientX,

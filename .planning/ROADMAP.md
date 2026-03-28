@@ -12,8 +12,8 @@ This roadmap delivers Squares as a polished, frontend-only puzzle game by moving
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Starter Pack Board Shell** - Load the shipped puzzle pack and render a clear playable board shell.
-- [ ] **Phase 2: Deterministic Rectangle Rules** - Implement the UI-independent validation and solve-detection engine.
+- [x] **Phase 1: Starter Pack Board Shell** - Load the shipped puzzle pack and render a clear playable board shell.
+- [x] **Phase 2: Deterministic Rectangle Rules** - Implement the UI-independent validation and solve-detection engine.
 - [ ] **Phase 3: Live Rectangle Placement** - Deliver drag-based rectangle placement with immediate validity feedback.
 - [ ] **Phase 4: Correction Controls** - Let players remove, undo, and reset without friction.
 - [ ] **Phase 5: Puzzle Browser & Session Context** - Add difficulty-based puzzle browsing and restore the player's browsing context.
@@ -50,9 +50,9 @@ Plans:
   3. The system can determine when the entire board is correctly covered with valid non-overlapping rectangles and all clues are satisfied.
 **Plans**: 3 plans
 Plans:
-- [ ] 02-01-PLAN.md — Lock the public rules contracts, deterministic issue ordering, and reusable rule-test scaffolding
-- [ ] 02-02-PLAN.md — Implement full placement diagnostics and deterministic primary-reason wrappers
-- [ ] 02-03-PLAN.md — Implement full board analysis and verify shipped starter-pack solutions through rules-first evaluation
+- [x] 02-01-PLAN.md — Lock the public rules contracts, deterministic issue ordering, and reusable rule-test scaffolding
+- [x] 02-02-PLAN.md — Implement full placement diagnostics and deterministic primary-reason wrappers
+- [x] 02-03-PLAN.md — Implement full board analysis and verify shipped starter-pack solutions through rules-first evaluation
 
 ### Phase 3: Live Rectangle Placement
 **Goal**: Players can create rectangles through direct manipulation and get instant visual feedback before committing.
@@ -129,7 +129,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Starter Pack Board Shell | 4/4 | Complete | 2026-03-27 |
-| 2. Deterministic Rectangle Rules | 0/TBD | Not started | - |
+| 2. Deterministic Rectangle Rules | 3/3 | Complete | 2026-03-28 |
 | 3. Live Rectangle Placement | 0/TBD | Not started | - |
 | 4. Correction Controls | 0/TBD | Not started | - |
 | 5. Puzzle Browser & Session Context | 0/TBD | Not started | - |

@@ -12,14 +12,15 @@ Players get a polished puzzle experience with trustworthy, deterministic rectang
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Load and present the 40 handcrafted puzzles from the starter pack JSON
+  Validated in Phase 1: Starter Pack Board Shell
+- [x] Implement deterministic validation and completion logic that players can trust
+  Validated in Phase 2: Deterministic Rectangle Rules
 
 ### Active
 
 - [ ] Ship a complete playable rectangle-partition puzzle game for desktop and mobile web
 - [ ] Deliver smooth touch and pointer interactions with clean visual feedback during selection and placement
-- [ ] Implement deterministic validation and completion logic that players can trust
-- [ ] Load and present the 40 handcrafted puzzles from the starter pack JSON
 - [ ] Persist player progress locally across sessions
 
 ### Out of Scope
@@ -45,10 +46,10 @@ This is a weekend MVP and also a test of the Codex + GSD workflow, but that proc
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Prioritize polished playability and engine correctness over workflow experimentation | The product goal is a satisfying puzzle experience players can trust | — Pending |
-| Ship the handcrafted 40-puzzle starter pack in v1 | Launch content already exists and reduces scope risk versus building generation now | — Pending |
-| Keep v1 frontend-only with localStorage | Faster delivery and simpler architecture for a puzzle MVP | — Pending |
-| Optimize first for smooth touch and pointer interactions | Cross-device usability is the most visible expression of "polished" for this release | — Pending |
+| Prioritize polished playability and engine correctness over workflow experimentation | The product goal is a satisfying puzzle experience players can trust | Confirmed during initialization |
+| Ship the handcrafted 40-puzzle starter pack in v1 | Launch content already exists and reduces scope risk versus building generation now | Validated in Phase 1 |
+| Keep v1 frontend-only with localStorage | Faster delivery and simpler architecture for a puzzle MVP | Still active |
+| Optimize first for smooth touch and pointer interactions | Cross-device usability is the most visible expression of "polished" for this release | Still active for upcoming interaction work |
 
 ## Evolution
 
@@ -68,4 +69,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-27 after initialization*
+*Last updated: 2026-03-28 after Phase 2 completion*

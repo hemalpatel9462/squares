@@ -87,6 +87,39 @@ function placeFirstRectangle() {
 }
 
 describe("App placement persistence", () => {
+  test("remove click clears a placed rectangle and undo restores it", () => {
+    render(<App />);
+
+    const { rectangle } = placeFirstRectangle();
+    const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
+    const placedCell = board.querySelector("[data-row='0'][data-col='0'][data-placed-rectangle='0']");
+
+    expect(placedCell).not.toBeNull();
+
+    fireEvent.pointerDown(placedCell!, {
+      pointerId: 5,
+      pointerType: "mouse",
+      clientX: 10,
+      clientY: 10,
+    });
+    fireEvent.pointerUp(placedCell!, {
+      pointerId: 5,
+      pointerType: "mouse",
+      clientX: 10,
+      clientY: 10,
+    });
+
+    expect(board.querySelector("[data-placed-cell='true']")).toBeNull();
+    expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Undo" }));
+
+    expect(board.querySelectorAll("[data-placed-cell='true']")).toHaveLength(
+      rectangle.width * rectangle.height,
+    );
+    expect(board.querySelector("[data-placed-rectangle='0']")).not.toBeNull();
+  });
+
   test("removes the empty-state prompt after the first valid placement", () => {
     render(<App />);
 

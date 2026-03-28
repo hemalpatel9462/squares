@@ -12,8 +12,9 @@ export interface RectangleBounds {
   height: number;
 }
 
-export interface CandidatePlacement extends RectangleBounds {
+export interface CandidatePlacement {
   origin: CellCoord;
+  rectangle: RectangleBounds;
 }
 
 export type PlacementIssue = "missing_origin_clue" | "contains_other_clue" | "wrong_area" | "out_of_bounds" | "overlap";
@@ -34,34 +35,32 @@ export interface PlacementIssueDetail {
 
 export interface PlacementAnalysis {
   placement: CandidatePlacement;
-  isValid: boolean;
+  originClue: PuzzleClue | null;
+  coveredCells: CellCoord[];
+  coveredCellKeys: string[];
+  rectangleArea: number;
   issues: PlacementIssue[];
   issueDetails: PlacementIssueDetail[];
-  coveredCells: CellCoord[];
   primaryIssue: PlacementIssue | null;
+  isValid: boolean;
 }
 
-export type BoardIssue =
-  | "invalid_placement"
-  | "overlap"
-  | "uncovered_cell"
-  | "missing_clue_coverage"
-  | "foreign_clue_coverage";
+export type BoardIssue = "invalid_placement" | "uncovered_cell" | "overlap";
 
 export interface BoardIssueDetail {
   issue: BoardIssue;
   cells?: CellCoord[];
-  clues?: PuzzleClue[];
   placements?: CandidatePlacement[];
 }
 
 export interface BoardAnalysis {
   isSolved: boolean;
   placements: PlacementAnalysis[];
+  invalidPlacements: PlacementAnalysis[];
   issues: BoardIssue[];
   issueDetails: BoardIssueDetail[];
   uncoveredCells: CellCoord[];
+  uncoveredCellKeys: string[];
   overlappingCells: CellCoord[];
-  missingClueCoverage: PuzzleClue[];
-  foreignClueCoverage: PuzzleClue[];
+  overlappingCellKeys: string[];
 }

@@ -23,7 +23,7 @@ function notImplemented(functionName: string): never {
   throw new Error(`@/rules ${functionName} is not implemented yet.`);
 }
 
-export function analyzePlacement(
+function analyzePlacement(
   _size: number,
   _clues: PuzzleClue[],
   _placement: CandidatePlacement,
@@ -32,19 +32,19 @@ export function analyzePlacement(
   return notImplemented("analyzePlacement");
 }
 
-export function getPrimaryPlacementIssue(
-  _analysis: Pick<PlacementAnalysis, "issues" | "primaryIssue">,
+function getPrimaryPlacementIssue(
+  _issues: PlacementIssue[],
 ): PlacementIssue | null {
   return notImplemented("getPrimaryPlacementIssue");
 }
 
-export function isPlacementValid(
+function isPlacementValid(
   _analysis: Pick<PlacementAnalysis, "isValid">,
 ): boolean {
   return notImplemented("isPlacementValid");
 }
 
-export function analyzeBoard(
+function analyzeBoard(
   _size: number,
   _clues: PuzzleClue[],
   _placements: CandidatePlacement[],
@@ -52,7 +52,7 @@ export function analyzeBoard(
   return notImplemented("analyzeBoard");
 }
 
-export function isBoardSolved(
+function isBoardSolved(
   _analysis: Pick<BoardAnalysis, "isSolved">,
 ): boolean {
   return notImplemented("isBoardSolved");

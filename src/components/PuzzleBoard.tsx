@@ -156,6 +156,7 @@ export function PuzzleBoard({
   const [session, setSession] = useState<PointerDragSession | null>(null);
   const [releaseFeedback, setReleaseFeedback] = useState<ReleaseFeedback>("none");
   const feedbackTimeoutRef = useRef<number | null>(null);
+  const suppressNextClickRemovalRef = useRef(false);
   const sessionRef = useRef<PointerDragSession | null>(null);
   const boardRef = useRef<HTMLDivElement | null>(null);
 
@@ -239,6 +240,17 @@ export function PuzzleBoard({
     sessionRef.current = null;
     setSession(null);
     setReleaseFeedback("none");
+  }
+
+  function removePlacedRectangleFromTarget(target: EventTarget | null): boolean {
+    const placedRectangleIndex = parsePlacedRectangleIndex(target);
+
+    if (placedRectangleIndex === null) {
+      return false;
+    }
+
+    onRemoveRectangle?.(placedRectangleIndex);
+    return true;
   }
 
   function syncSession(nextSession: PointerDragSession | null) {
@@ -341,12 +353,6 @@ export function PuzzleBoard({
     const resolvedPointerId = resolvePointerId(event.pointerId, current);
 
     if (!current || resolvedPointerId !== current.pointerId) {
-      const placedRectangleIndex = parsePlacedRectangleIndex(event.target);
-
-      if (placedRectangleIndex !== null && !sessionRef.current?.preview) {
-        onRemoveRectangle?.(placedRectangleIndex);
-      }
-
       return;
     }
 
@@ -356,10 +362,8 @@ export function PuzzleBoard({
       onPlaceRectangle?.(current.preview.placement);
       nextFeedback = "valid-settle";
     } else if (current.phase === "armed") {
-      const placedRectangleIndex = parsePlacedRectangleIndex(event.target);
-
-      if (placedRectangleIndex !== null) {
-        onRemoveRectangle?.(placedRectangleIndex);
+      if (removePlacedRectangleFromTarget(event.target)) {
+        suppressNextClickRemovalRef.current = true;
       }
     } else if (current.phase === "dragging") {
       nextFeedback = "invalid-snapback";
@@ -385,6 +389,19 @@ export function PuzzleBoard({
     }
 
     clearInteraction();
+  }
+
+  function handleCellClick(event: React.MouseEvent<HTMLDivElement>) {
+    if (suppressNextClickRemovalRef.current) {
+      suppressNextClickRemovalRef.current = false;
+      return;
+    }
+
+    if (sessionRef.current?.preview) {
+      return;
+    }
+
+    removePlacedRectangleFromTarget(event.target);
   }
 
   const previewTone = preview?.isValid ? "valid" : "invalid";
@@ -461,6 +478,7 @@ export function PuzzleBoard({
                     }
                   : undefined
               }
+              onClick={handleCellClick}
             >
               {isClue ? cell.clueValue : null}
             </div>

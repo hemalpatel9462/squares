@@ -64,7 +64,7 @@ Plans:
   3. Player can release to place a rectangle when the preview is valid, with clean and satisfying feedback.
 **Plans**: 2 plans
 Plans:
-- [ ] 03-01-PLAN.md — Establish App-owned placement state, shell contracts, and the empty-board prompt
+- [x] 03-01-PLAN.md — Establish App-owned placement state, shell contracts, and the empty-board prompt
 - [ ] 03-02-PLAN.md — Implement clue-anchored pointer preview, release feedback, and placement regression coverage
 **UI hint**: yes
 
@@ -133,7 +133,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 |-------|----------------|--------|-----------|
 | 1. Starter Pack Board Shell | 4/4 | Complete | 2026-03-27 |
 | 2. Deterministic Rectangle Rules | 3/3 | Complete | 2026-03-28 |
-| 3. Live Rectangle Placement | 0/TBD | Not started | - |
+| 3. Live Rectangle Placement | 1/2 | In Progress | - |
 | 4. Correction Controls | 0/TBD | Not started | - |
 | 5. Puzzle Browser & Session Context | 0/TBD | Not started | - |
 | 6. Completion Tracking & Next Puzzle Flow | 0/TBD | Not started | - |

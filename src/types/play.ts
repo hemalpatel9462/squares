@@ -1,0 +1,23 @@
+import type { CellCoord, PlacementAnalysis, PlacementIssue } from "@/types/rules";
+
+export type DragPhase = "idle" | "armed" | "dragging" | "snapback" | "settle";
+
+export type ReleaseFeedback = "none" | "invalid-snapback" | "valid-settle";
+
+export interface PointerDragSession {
+  pointerId: number;
+  pointerType: string;
+  origin: CellCoord;
+  startClientX: number;
+  startClientY: number;
+  currentCell: CellCoord;
+  phase: "armed" | "dragging";
+  preview: PlacementAnalysis | null;
+}
+
+export interface LivePreviewStatus {
+  area: number;
+  tone: "valid" | "invalid";
+  text: string;
+  primaryIssue: PlacementIssue | null;
+}

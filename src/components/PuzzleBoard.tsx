@@ -1,7 +1,10 @@
 import type { PuzzleListItem } from "@/types/puzzle";
+import type { CandidatePlacement } from "@/types/rules";
 
 interface PuzzleBoardProps {
   puzzle: PuzzleListItem;
+  placedRectangles?: CandidatePlacement[];
+  onPlaceRectangle?: (placement: CandidatePlacement) => void;
 }
 
 export function PuzzleBoard({ puzzle }: PuzzleBoardProps) {

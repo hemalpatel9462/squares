@@ -2,6 +2,7 @@ import PuzzleBoard from "@/components/PuzzleBoard";
 import PuzzleMeta from "@/components/PuzzleMeta";
 import PuzzleNavigator from "@/components/PuzzleNavigator";
 import type { PuzzleListItem } from "@/types/puzzle";
+import type { CandidatePlacement } from "@/types/rules";
 
 interface PuzzleShellProps {
   canGoPrevious: boolean;
@@ -9,6 +10,8 @@ interface PuzzleShellProps {
   onPrevious: () => void;
   onNext: () => void;
   puzzle: PuzzleListItem;
+  placedRectangles?: CandidatePlacement[];
+  onPlaceRectangle?: (placement: CandidatePlacement) => void;
 }
 
 export function PuzzleShell({
@@ -16,6 +19,8 @@ export function PuzzleShell({
   canGoPrevious,
   onNext,
   onPrevious,
+  onPlaceRectangle,
+  placedRectangles,
   puzzle,
 }: PuzzleShellProps) {
   return (
@@ -36,7 +41,11 @@ export function PuzzleShell({
         </header>
 
         <div className="puzzle-shell__board">
-          <PuzzleBoard puzzle={puzzle} />
+          <PuzzleBoard
+            onPlaceRectangle={onPlaceRectangle}
+            placedRectangles={placedRectangles}
+            puzzle={puzzle}
+          />
         </div>
       </div>
     </section>

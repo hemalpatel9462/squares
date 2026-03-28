@@ -12,11 +12,16 @@ interface PuzzleShellProps {
   puzzle: PuzzleListItem;
   placedRectangles?: CandidatePlacement[];
   onPlaceRectangle?: (placement: CandidatePlacement) => void;
+  emptyPlacementPrompt?: {
+    heading: string;
+    body: string;
+  } | null;
 }
 
 export function PuzzleShell({
   canGoNext,
   canGoPrevious,
+  emptyPlacementPrompt,
   onNext,
   onPrevious,
   onPlaceRectangle,
@@ -41,6 +46,21 @@ export function PuzzleShell({
         </header>
 
         <div className="puzzle-shell__board">
+          {emptyPlacementPrompt ? (
+            <div
+              aria-label="Placement prompt"
+              className="hero-panel"
+              style={{ marginBottom: "16px", padding: "16px" }}
+            >
+              <h2
+                className="puzzle-shell__title"
+                style={{ fontSize: "20px", marginBottom: "8px" }}
+              >
+                {emptyPlacementPrompt.heading}
+              </h2>
+              <p className="hero-copy">{emptyPlacementPrompt.body}</p>
+            </div>
+          ) : null}
           <PuzzleBoard
             onPlaceRectangle={onPlaceRectangle}
             placedRectangles={placedRectangles}

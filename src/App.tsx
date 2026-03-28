@@ -2,9 +2,12 @@ import { useState } from "react";
 
 import PuzzleShell from "@/components/PuzzleShell";
 import { getPuzzleByIndex } from "@/data/starterPack";
+import { analyzeBoard, analyzePlacement } from "@/rules";
+import type { CandidatePlacement } from "@/types/rules";
 
 export default function App() {
   const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState(0);
+  const [placementsByPuzzleId, setPlacementsByPuzzleId] = useState<Record<string, CandidatePlacement[]>>({});
   const currentPuzzle = getPuzzleByIndex(currentPuzzleIndex);
 
   if (!currentPuzzle) {
@@ -26,6 +29,37 @@ export default function App() {
     );
   }
 
+  const currentPlacements = placementsByPuzzleId[currentPuzzle.id] ?? [];
+  const currentBoardAnalysis = analyzeBoard(currentPuzzle.size, currentPuzzle.clues, currentPlacements);
+
+  function handlePlaceRectangle(placement: CandidatePlacement) {
+    setPlacementsByPuzzleId((currentByPuzzleId) => {
+      const currentPlacements = currentByPuzzleId[currentPuzzle.id] ?? [];
+      const nextPlacement = analyzePlacement(
+        currentPuzzle.size,
+        currentPuzzle.clues,
+        placement,
+        currentPlacements,
+      );
+
+      if (!nextPlacement.isValid) {
+        return currentByPuzzleId;
+      }
+
+      return {
+        ...currentByPuzzleId,
+        [currentPuzzle.id]: [...currentPlacements, placement],
+      };
+    });
+  }
+
+  const emptyPlacementPrompt = currentPlacements.length === 0
+    ? {
+        heading: "No rectangles placed yet",
+        body: "Drag from a numbered clue to preview a rectangle. Release when the area matches the clue and the outline turns valid.",
+      }
+    : null;
+
   return (
     <main className="app-shell">
       <div aria-hidden="true" className="ambient-glow ambient-glow-left" />
@@ -39,8 +73,12 @@ export default function App() {
         onPrevious={() => {
           setCurrentPuzzleIndex((index) => index - 1);
         }}
+        onPlaceRectangle={handlePlaceRectangle}
+        placedRectangles={currentPlacements}
         puzzle={currentPuzzle}
+        emptyPlacementPrompt={emptyPlacementPrompt}
       />
+      <div aria-hidden="true" data-board-solved={currentBoardAnalysis.isSolved} hidden />
     </main>
   );
 }

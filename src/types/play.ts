@@ -1,4 +1,5 @@
 import type { CellCoord, PlacementAnalysis, PlacementIssue } from "@/types/rules";
+import type { CandidatePlacement } from "@/types/rules";
 
 export type DragPhase = "idle" | "armed" | "dragging" | "snapback" | "settle";
 
@@ -20,4 +21,11 @@ export interface LivePreviewStatus {
   tone: "valid" | "invalid";
   text: string;
   primaryIssue: PlacementIssue | null;
+}
+
+export type PlacementSnapshot = CandidatePlacement[];
+
+export interface PuzzlePlacementHistory {
+  past: PlacementSnapshot[];
+  present: PlacementSnapshot;
 }

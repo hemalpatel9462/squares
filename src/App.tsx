@@ -3,11 +3,42 @@ import { useState } from "react";
 import PuzzleShell from "@/components/PuzzleShell";
 import { getPuzzleByIndex } from "@/data/starterPack";
 import { analyzeBoard, analyzePlacement } from "@/rules";
+import type { PlacementSnapshot, PuzzlePlacementHistory } from "@/types/play";
 import type { CandidatePlacement } from "@/types/rules";
+
+const EMPTY_PLACEMENT_SNAPSHOT: PlacementSnapshot = [];
+
+function getPuzzleHistory(
+  historyByPuzzleId: Record<string, PuzzlePlacementHistory>,
+  puzzleId: string,
+): PuzzlePlacementHistory {
+  return historyByPuzzleId[puzzleId] ?? {
+    past: [],
+    present: EMPTY_PLACEMENT_SNAPSHOT,
+  };
+}
+
+function pushPuzzleSnapshot(
+  historyByPuzzleId: Record<string, PuzzlePlacementHistory>,
+  puzzleId: string,
+  nextSnapshot: PlacementSnapshot,
+): Record<string, PuzzlePlacementHistory> {
+  const currentHistory = getPuzzleHistory(historyByPuzzleId, puzzleId);
+
+  return {
+    ...historyByPuzzleId,
+    [puzzleId]: {
+      past: [...currentHistory.past, currentHistory.present],
+      present: nextSnapshot,
+    },
+  };
+}
 
 export default function App() {
   const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState(0);
-  const [placementsByPuzzleId, setPlacementsByPuzzleId] = useState<Record<string, CandidatePlacement[]>>({});
+  const [placementHistoryByPuzzleId, setPlacementHistoryByPuzzleId] = useState<
+    Record<string, PuzzlePlacementHistory>
+  >({});
   const currentPuzzle = getPuzzleByIndex(currentPuzzleIndex);
 
   if (!currentPuzzle) {
@@ -29,12 +60,13 @@ export default function App() {
     );
   }
 
-  const currentPlacements = placementsByPuzzleId[currentPuzzle.id] ?? [];
+  const currentHistory = getPuzzleHistory(placementHistoryByPuzzleId, currentPuzzle.id);
+  const currentPlacements = currentHistory.present;
   const currentBoardAnalysis = analyzeBoard(currentPuzzle.size, currentPuzzle.clues, currentPlacements);
 
   function handlePlaceRectangle(placement: CandidatePlacement) {
-    setPlacementsByPuzzleId((currentByPuzzleId) => {
-      const currentPlacements = currentByPuzzleId[currentPuzzle.id] ?? [];
+    setPlacementHistoryByPuzzleId((currentByPuzzleId) => {
+      const currentPlacements = getPuzzleHistory(currentByPuzzleId, currentPuzzle.id).present;
       const nextPlacement = analyzePlacement(
         currentPuzzle.size,
         currentPuzzle.clues,
@@ -46,10 +78,7 @@ export default function App() {
         return currentByPuzzleId;
       }
 
-      return {
-        ...currentByPuzzleId,
-        [currentPuzzle.id]: [...currentPlacements, placement],
-      };
+      return pushPuzzleSnapshot(currentByPuzzleId, currentPuzzle.id, [...currentPlacements, placement]);
     });
   }
 

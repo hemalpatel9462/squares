@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-03-28T15:09:00.995Z"
+status: verifying
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-28T15:34:30.334Z"
 last_activity: 2026-03-28
 progress:
   total_phases: 8
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 11
-  completed_plans: 10
+  completed_plans: 11
   percent: 89
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 
 Phase: 04 (correction-controls) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-03-28
 
 Progress: [█████████░] 89%
@@ -58,6 +58,7 @@ Progress: [█████████░] 89%
 | Phase 03-live-rectangle-placement P01 | 9min | 2 tasks | 7 files |
 | Phase 03-live-rectangle-placement P02 | 9min | 2 tasks | 8 files |
 | Phase 04 P01 | 15m | 3 tasks | 5 files |
+| Phase 04-correction-controls P02 | 11m | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,8 @@ Recent decisions affecting current work:
 - [Phase 03-live-rectangle-placement]: Used target-cell dataset fallback for jsdom pointer events while keeping browser drag geometry unchanged.
 - [Phase 04]: Use per-puzzle {past,present} snapshot history in App for deterministic multi-step undo.
 - [Phase 04]: Gate reset confirmation strictly on non-empty present placements; empty reset is immediate no-op.
+- [Phase 04-correction-controls]: Use board cell data-placed-rectangle targeting for direct remove events.
+- [Phase 04-correction-controls]: Suppress click follow-up removal after pointer-armed clue taps to avoid duplicate remove actions.
 
 ### Pending Todos
 
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T15:09:00.992Z
-Stopped at: Completed 04-01-PLAN.md
+Last session: 2026-03-28T15:34:30.331Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None

@@ -16,6 +16,8 @@ Players get a polished puzzle experience with trustworthy, deterministic rectang
   Validated in Phase 1: Starter Pack Board Shell
 - [x] Implement deterministic validation and completion logic that players can trust
   Validated in Phase 2: Deterministic Rectangle Rules
+- [x] Provide low-friction correction controls (remove, multi-step undo, smart reset) during puzzle play
+  Validated in Phase 4: Correction Controls
 
 ### Active
 
@@ -69,4 +71,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-28 after Phase 2 completion*
+*Last updated: 2026-03-28 after Phase 4 completion*

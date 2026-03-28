@@ -17,7 +17,7 @@
 - [x] **PLAY-02**: Player can drag to preview the target rectangle before placement is confirmed
 - [x] **PLAY-03**: Player receives immediate visual feedback showing whether the current preview is valid or invalid
 - [x] **PLAY-04**: Player can place a rectangle on release when the selection is valid
-- [ ] **PLAY-05**: Player can remove a placed rectangle, undo the last placement, and reset the current puzzle
+- [x] **PLAY-05**: Player can remove a placed rectangle, undo the last placement, and reset the current puzzle
 
 ### Puzzle Rules Engine
 
@@ -89,7 +89,7 @@
 | PLAY-02 | Phase 3 | Complete |
 | PLAY-03 | Phase 3 | Complete |
 | PLAY-04 | Phase 3 | Complete |
-| PLAY-05 | Phase 4 | Pending |
+| PLAY-05 | Phase 4 | Complete |
 | RULE-01 | Phase 2 | Pending |
 | RULE-02 | Phase 2 | Pending |
 | RULE-03 | Phase 2 | Pending |

@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 4 context gathered
-last_updated: "2026-03-28T14:16:50.537Z"
+status: executing
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-03-28T15:09:00.995Z"
 last_activity: 2026-03-28
 progress:
   total_phases: 8
   completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
+  total_plans: 11
+  completed_plans: 10
   percent: 89
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Players get a polished puzzle experience with trustworthy, deterministic rectangle-validation logic.
-**Current focus:** Phase 03 — live-rectangle-placement
+**Current focus:** Phase 04 — correction-controls
 
 ## Current Position
 
-Phase: 03 (live-rectangle-placement) — EXECUTING
+Phase: 04 (correction-controls) — EXECUTING
 Plan: 2 of 2
-Status: Phase complete — ready for verification
+Status: Ready to execute
 Last activity: 2026-03-28
 
 Progress: [█████████░] 89%
@@ -57,6 +57,7 @@ Progress: [█████████░] 89%
 | Phase 01 P04 | 10min | 2 tasks | 12 files |
 | Phase 03-live-rectangle-placement P01 | 9min | 2 tasks | 7 files |
 | Phase 03-live-rectangle-placement P02 | 9min | 2 tasks | 8 files |
+| Phase 04 P01 | 15m | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,8 @@ Recent decisions affecting current work:
 - [Phase 03-live-rectangle-placement]: PuzzleShell only forwards placement props and renders compact empty-state copy inside the existing shell.
 - [Phase 03-live-rectangle-placement]: Kept App as the owner of committed placements and PuzzleBoard as the owner of transient preview and release feedback state.
 - [Phase 03-live-rectangle-placement]: Used target-cell dataset fallback for jsdom pointer events while keeping browser drag geometry unchanged.
+- [Phase 04]: Use per-puzzle {past,present} snapshot history in App for deterministic multi-step undo.
+- [Phase 04]: Gate reset confirmation strictly on non-empty present placements; empty reset is immediate no-op.
 
 ### Pending Todos
 
@@ -88,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T14:16:50.528Z
-Stopped at: Phase 4 context gathered
-Resume file: .planning/phases/04-correction-controls/04-CONTEXT.md
+Last session: 2026-03-28T15:09:00.992Z
+Stopped at: Completed 04-01-PLAN.md
+Resume file: None

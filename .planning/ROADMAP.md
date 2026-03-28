@@ -137,7 +137,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 | 1. Starter Pack Board Shell | 4/4 | Complete | 2026-03-27 |
 | 2. Deterministic Rectangle Rules | 3/3 | Complete | 2026-03-28 |
 | 3. Live Rectangle Placement | 2/2 | In Progress | - |
-| 4. Correction Controls | 0/TBD | Not started | - |
+| 4. Correction Controls | 1/2 | In Progress|  |
 | 5. Puzzle Browser & Session Context | 0/TBD | Not started | - |
 | 6. Completion Tracking & Next Puzzle Flow | 0/TBD | Not started | - |
 | 7. First-Use Tutorial | 0/TBD | Not started | - |

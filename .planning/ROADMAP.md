@@ -76,7 +76,10 @@ Plans:
   1. Player can remove an already placed rectangle from the board.
   2. Player can undo the last placement without resetting all progress.
   3. Player can reset the current puzzle back to a clean unsolved state.
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 04-01-PLAN.md — Add puzzle-scoped correction history plus compact Undo/Reset controls with smart confirmation
+- [ ] 04-02-PLAN.md — Add direct board rectangle removal and regression coverage for remove+undo+drag behavior
 **UI hint**: yes
 
 ### Phase 5: Puzzle Browser & Session Context

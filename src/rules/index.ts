@@ -10,6 +10,7 @@ import {
   getPrimaryPlacementIssue,
   isPlacementValid,
 } from "./placementAnalysis";
+import { analyzeBoard, isBoardSolved } from "./boardAnalysis";
 
 export {
   PLACEMENT_ISSUE_PRIORITY,
@@ -23,23 +24,5 @@ export {
   type PlacementIssueDetail,
   type RectangleBounds,
 } from "@/types/rules";
-
-function notImplemented(functionName: string): never {
-  throw new Error(`@/rules ${functionName} is not implemented yet.`);
-}
-
-function analyzeBoard(
-  _size: number,
-  _clues: PuzzleClue[],
-  _placements: CandidatePlacement[],
-): BoardAnalysis {
-  return notImplemented("analyzeBoard");
-}
-
-function isBoardSolved(
-  _analysis: Pick<BoardAnalysis, "isSolved">,
-): boolean {
-  return notImplemented("isBoardSolved");
-}
 
 export { analyzePlacement, getPrimaryPlacementIssue, isPlacementValid, analyzeBoard, isBoardSolved };

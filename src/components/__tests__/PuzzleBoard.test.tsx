@@ -1,11 +1,16 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
 
 import App from "@/App";
 import PuzzleBoard from "@/components/PuzzleBoard";
 import { getPuzzleByIndex } from "@/data/starterPack";
 
 const boardSizes = [4, 6, 8] as const;
+
+afterEach(() => {
+  cleanup();
+  window.localStorage.clear();
+});
 
 describe("PuzzleBoard", () => {
   it.each(boardSizes)("renders the correct number of cells for %ix%i puzzles", (size) => {
@@ -43,6 +48,7 @@ describe("PuzzleBoard", () => {
 describe("App", () => {
   it("loads the first starter-pack puzzle into the integrated puzzle shell", () => {
     render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: "Puzzle easy-001" }));
 
     expect(screen.getByRole("region", { name: /puzzle easy-001 board shell/i })).toBeInTheDocument();
     expect(screen.getByText("Puzzle easy-001")).toBeInTheDocument();

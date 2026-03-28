@@ -7,11 +7,19 @@ import App from "@/App";
 
 afterEach(() => {
   cleanup();
+  window.localStorage.clear();
 });
+
+function openPuzzleFromBrowser(puzzleId = "easy-001") {
+  // open puzzle from browser before asserting play-shell behavior
+  fireEvent.click(screen.getByRole("tab", { name: "Easy" }));
+  fireEvent.click(screen.getByRole("button", { name: `Puzzle ${puzzleId}` }));
+}
 
 describe("App", () => {
   it("advances to the next puzzle and updates pack progress", () => {
     render(<App />);
+    openPuzzleFromBrowser();
 
     expect(screen.getByText("Puzzle easy-001")).toBeInTheDocument();
     expect(screen.getByText("Puzzle 1 of 40")).toBeInTheDocument();
@@ -24,6 +32,7 @@ describe("App", () => {
 
   it("disables previous on the first puzzle and next on the fortieth puzzle", () => {
     render(<App />);
+    openPuzzleFromBrowser();
 
     expect(screen.getByRole("button", { name: "Previous" })).toBeDisabled();
 
@@ -38,6 +47,7 @@ describe("App", () => {
 
   it("renders metadata and board inside one framed premium shell with the phase tokens", () => {
     render(<App />);
+    openPuzzleFromBrowser();
 
     const shell = screen.getByRole("region", { name: "Puzzle easy-001 board shell" });
     const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
@@ -48,6 +58,7 @@ describe("App", () => {
     expect(shellText).toContain("Puzzle easy-001");
     expect(shellText).toContain("Easy");
     expect(shellText).toContain("Puzzle 1 of 40");
+    expect(screen.getByRole("button", { name: "Back to Browser" })).toBeInTheDocument();
     expect(shell.className).toContain("puzzle-shell");
     expect(tokensCss).toContain("--color-dominant: #F3EEE4;");
     expect(tokensCss).toContain("--space-md: 16px;");

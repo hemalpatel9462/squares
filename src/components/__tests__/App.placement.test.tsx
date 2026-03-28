@@ -10,6 +10,7 @@ import { mockBoardGeometry } from "./testGeometry";
 afterEach(() => {
   vi.restoreAllMocks();
   cleanup();
+  window.localStorage.clear();
 });
 
 function getPlacementTarget() {
@@ -86,9 +87,20 @@ function placeFirstRectangle() {
   return { rectangle };
 }
 
+function openPuzzleFromBrowser(puzzleId = "easy-001") {
+  // open puzzle from browser before running placement regression checks
+  fireEvent.click(screen.getByRole("tab", { name: "Easy" }));
+  fireEvent.click(screen.getByRole("button", { name: `Puzzle ${puzzleId}` }));
+}
+
+function renderAppInPlay(puzzleId = "easy-001") {
+  render(<App />);
+  openPuzzleFromBrowser(puzzleId);
+}
+
 describe("App placement persistence", () => {
   test("remove click clears a placed rectangle and undo restores it", () => {
-    render(<App />);
+    renderAppInPlay();
 
     const { rectangle } = placeFirstRectangle();
     const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
@@ -121,7 +133,7 @@ describe("App placement persistence", () => {
   });
 
   test("remove click event clears one rectangle and undo restores both", () => {
-    render(<App />);
+    renderAppInPlay();
 
     placeFirstRectangle();
     placeRectangle({ row: 1, col: 3 }, { row: 0, col: 2 }, 2);
@@ -143,7 +155,7 @@ describe("App placement persistence", () => {
   });
 
   test("removes the empty-state prompt after the first valid placement", () => {
-    render(<App />);
+    renderAppInPlay();
 
     expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
 
@@ -154,7 +166,7 @@ describe("App placement persistence", () => {
   });
 
   test("clears visible placements when navigating to a different puzzle", () => {
-    render(<App />);
+    renderAppInPlay();
 
     placeFirstRectangle();
 
@@ -171,7 +183,7 @@ describe("App placement persistence", () => {
   });
 
   test("restores saved placements when returning to a puzzle", () => {
-    render(<App />);
+    renderAppInPlay();
 
     const { rectangle } = placeFirstRectangle();
 
@@ -192,7 +204,7 @@ describe("App placement persistence", () => {
   });
 
   test("undo supports multi-step rollback in order", () => {
-    render(<App />);
+    renderAppInPlay();
 
     const { rectangle } = placeFirstRectangle();
     placeRectangle({ row: 1, col: 3 }, { row: 0, col: 2 }, 2);
@@ -215,7 +227,7 @@ describe("App placement persistence", () => {
 
   test("reset clears placements when confirmed", () => {
     const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
-    render(<App />);
+    renderAppInPlay();
 
     placeFirstRectangle();
     fireEvent.click(screen.getByRole("button", { name: "Reset" }));
@@ -229,7 +241,7 @@ describe("App placement persistence", () => {
 
   test("reset keeps placements when confirmation is cancelled", () => {
     const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(false);
-    render(<App />);
+    renderAppInPlay();
 
     placeFirstRectangle();
     fireEvent.click(screen.getByRole("button", { name: "Reset" }));
@@ -243,7 +255,7 @@ describe("App placement persistence", () => {
 
   test("reset on empty board does not ask for confirmation", () => {
     const confirmSpy = vi.spyOn(window, "confirm");
-    render(<App />);
+    renderAppInPlay();
 
     fireEvent.click(screen.getByRole("button", { name: "Reset" }));
 

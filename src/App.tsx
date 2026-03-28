@@ -103,6 +103,19 @@ export default function App() {
     });
   }
 
+  function handleRemoveRectangle(rectangleIndex: number) {
+    setPlacementHistoryByPuzzleId((currentByPuzzleId) => {
+      const currentHistory = getPuzzleHistory(currentByPuzzleId, currentPuzzle.id);
+
+      if (rectangleIndex < 0 || rectangleIndex >= currentHistory.present.length) {
+        return currentByPuzzleId;
+      }
+
+      const nextSnapshot = currentHistory.present.filter((_, index) => index !== rectangleIndex);
+      return pushPuzzleSnapshot(currentByPuzzleId, currentPuzzle.id, nextSnapshot);
+    });
+  }
+
   function handleReset() {
     setPlacementHistoryByPuzzleId((currentByPuzzleId) => {
       const currentHistory = getPuzzleHistory(currentByPuzzleId, currentPuzzle.id);
@@ -140,6 +153,7 @@ export default function App() {
           setCurrentPuzzleIndex((index) => index + 1);
         }}
         onReset={handleReset}
+        onRemoveRectangle={handleRemoveRectangle}
         onUndo={handleUndo}
         onPrevious={() => {
           setCurrentPuzzleIndex((index) => index - 1);

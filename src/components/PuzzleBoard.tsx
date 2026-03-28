@@ -19,6 +19,7 @@ interface PuzzleBoardProps {
   puzzle: PuzzleListItem;
   placedRectangles?: CandidatePlacement[];
   onPlaceRectangle?: (placement: CandidatePlacement) => void;
+  onRemoveRectangle?: (rectangleIndex: number) => void;
 }
 
 function toCellKey(cell: CellCoord): string {
@@ -68,6 +69,22 @@ function pointToCell(clientX: number, clientY: number, rect: DOMRect, size: numb
   const row = Math.max(0, Math.min(size - 1, Math.floor(((clientY - rect.top) / rect.height) * size)));
 
   return { row, col };
+}
+
+function parsePlacedRectangleIndex(target: EventTarget | null): number | null {
+  if (!(target instanceof HTMLElement)) {
+    return null;
+  }
+
+  const placedCell = target.closest<HTMLElement>("[data-placed-rectangle]");
+  const rectangleIndexValue = placedCell?.dataset.placedRectangle;
+
+  if (!rectangleIndexValue) {
+    return null;
+  }
+
+  const rectangleIndex = Number.parseInt(rectangleIndexValue, 10);
+  return Number.isNaN(rectangleIndex) ? null : rectangleIndex;
 }
 
 function getRectangleCenterDistance(candidate: CandidatePlacement, target: CellCoord): number {
@@ -132,6 +149,7 @@ function createPreview(
 
 export function PuzzleBoard({
   onPlaceRectangle,
+  onRemoveRectangle,
   placedRectangles = [],
   puzzle,
 }: PuzzleBoardProps) {
@@ -317,12 +335,18 @@ export function PuzzleBoard({
     }
   }
 
-  function handlePointerUp(pointerId: number) {
+  function handlePointerUp(event: React.PointerEvent<HTMLDivElement>) {
     let nextFeedback: ReleaseFeedback = "none";
     const current = sessionRef.current;
-    const resolvedPointerId = resolvePointerId(pointerId, current);
+    const resolvedPointerId = resolvePointerId(event.pointerId, current);
 
     if (!current || resolvedPointerId !== current.pointerId) {
+      const placedRectangleIndex = parsePlacedRectangleIndex(event.target);
+
+      if (placedRectangleIndex !== null && !sessionRef.current?.preview) {
+        onRemoveRectangle?.(placedRectangleIndex);
+      }
+
       return;
     }
 
@@ -331,6 +355,12 @@ export function PuzzleBoard({
     if (current.preview?.isValid) {
       onPlaceRectangle?.(current.preview.placement);
       nextFeedback = "valid-settle";
+    } else if (current.phase === "armed") {
+      const placedRectangleIndex = parsePlacedRectangleIndex(event.target);
+
+      if (placedRectangleIndex !== null) {
+        onRemoveRectangle?.(placedRectangleIndex);
+      }
     } else if (current.phase === "dragging") {
       nextFeedback = "invalid-snapback";
     }
@@ -383,7 +413,7 @@ export function PuzzleBoard({
           handlePointerMove(event.pointerId, event.clientX, event.clientY);
         }}
         onPointerUp={(event) => {
-          handlePointerUp(event.pointerId);
+          handlePointerUp(event);
         }}
         ref={boardRef}
         role="img"

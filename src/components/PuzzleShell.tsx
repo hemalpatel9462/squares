@@ -15,6 +15,7 @@ interface PuzzleShellProps {
   puzzle: PuzzleListItem;
   placedRectangles?: CandidatePlacement[];
   onPlaceRectangle?: (placement: CandidatePlacement) => void;
+  onRemoveRectangle?: (rectangleIndex: number) => void;
   emptyPlacementPrompt?: {
     heading: string;
     body: string;
@@ -31,6 +32,7 @@ export function PuzzleShell({
   onReset,
   onUndo,
   onPlaceRectangle,
+  onRemoveRectangle,
   placedRectangles,
   puzzle,
 }: PuzzleShellProps) {
@@ -82,6 +84,7 @@ export function PuzzleShell({
           ) : null}
           <PuzzleBoard
             onPlaceRectangle={onPlaceRectangle}
+            onRemoveRectangle={onRemoveRectangle}
             placedRectangles={placedRectangles}
             puzzle={puzzle}
           />

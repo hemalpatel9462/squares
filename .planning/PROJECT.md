@@ -18,6 +18,8 @@ Players get a polished puzzle experience with trustworthy, deterministic rectang
   Validated in Phase 2: Deterministic Rectangle Rules
 - [x] Provide low-friction correction controls (remove, multi-step undo, smart reset) during puzzle play
   Validated in Phase 4: Correction Controls
+- [x] Let players browse puzzles by difficulty and restore selected difficulty across sessions
+  Validated in Phase 5: Puzzle Browser & Session Context
 
 ### Active
 
@@ -35,6 +37,10 @@ Players get a polished puzzle experience with trustworthy, deterministic rectang
 ## Context
 
 This is a weekend MVP and also a test of the Codex + GSD workflow, but that process goal is secondary to delivering a polished playable game. The current source materials live in the `Origianl Assets/` directory and include early project docs plus a 40-puzzle starter pack JSON file. The product should support both desktop and mobile play, use localStorage for persistence, and keep the puzzle engine logic cleanly separated from the UI so future puzzle-generation work can build on the same foundations.
+
+## Current State
+
+Phase 5 is complete: players now enter through a dedicated puzzle browser, choose by difficulty, and return to the same selected difficulty on reload.
 
 ## Constraints
 
@@ -71,4 +77,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-28 after Phase 4 completion*
+*Last updated: 2026-03-28 after Phase 5 completion*

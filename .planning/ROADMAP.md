@@ -62,7 +62,10 @@ Plans:
   1. Player can start a rectangle selection from a clue cell using mouse, touch, or pointer input.
   2. Player can drag to preview the target rectangle and see its area and validity state update immediately during the interaction.
   3. Player can release to place a rectangle when the preview is valid, with clean and satisfying feedback.
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 03-01-PLAN.md — Establish App-owned placement state, shell contracts, and the empty-board prompt
+- [ ] 03-02-PLAN.md — Implement clue-anchored pointer preview, release feedback, and placement regression coverage
 **UI hint**: yes
 
 ### Phase 4: Correction Controls

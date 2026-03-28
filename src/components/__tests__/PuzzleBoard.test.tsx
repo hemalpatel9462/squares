@@ -49,7 +49,7 @@ describe("App", () => {
     expect(screen.getByText("Easy")).toBeInTheDocument();
     expect(screen.getByText("Puzzle 1 of 40")).toBeInTheDocument();
 
-    const board = screen.getAllByRole("img", { name: /read-only 4 by 4 puzzle board/i }).at(-1);
+    const board = screen.getAllByRole("img", { name: /4 by 4 puzzle board/i }).at(-1);
     expect(board).toBeDefined();
 
     if (!board) {

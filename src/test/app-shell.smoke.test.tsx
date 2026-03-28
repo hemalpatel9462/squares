@@ -9,7 +9,7 @@ describe("App shell", () => {
     expect(screen.getByText("Puzzle easy-001")).toBeInTheDocument();
     expect(screen.getByText("Easy")).toBeInTheDocument();
     expect(
-      screen.getByRole("img", { name: /read-only 4 by 4 puzzle board/i }),
+      screen.getByRole("img", { name: /4 by 4 puzzle board/i }),
     ).toBeInTheDocument();
   });
 });

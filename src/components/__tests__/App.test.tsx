@@ -40,7 +40,7 @@ describe("App", () => {
     render(<App />);
 
     const shell = screen.getByRole("region", { name: "Puzzle easy-001 board shell" });
-    const board = screen.getByRole("img", { name: /read-only 4 by 4 puzzle board/i });
+    const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
     const shellText = shell.textContent ?? "";
     const tokensCss = readFileSync(resolve(process.cwd(), "src/styles/tokens.css"), "utf8");
 

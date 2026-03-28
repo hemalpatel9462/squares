@@ -1,87 +1,125 @@
-import { useState } from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, test } from "vitest";
 
 import App from "@/App";
 import { getPuzzleByIndex } from "@/data/starterPack";
-import { analyzePlacement } from "@/rules";
-import type { CandidatePlacement } from "@/types/rules";
+import type { CellCoord, RectangleBounds } from "@/types/rules";
 
-function PlacementScopeHarness() {
-  const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState(0);
-  const [placementsByPuzzleId, setPlacementsByPuzzleId] = useState<Record<string, CandidatePlacement[]>>({});
-  const currentPuzzle = getPuzzleByIndex(currentPuzzleIndex);
+import { mockBoardGeometry } from "./testGeometry";
 
-  if (!currentPuzzle) {
-    return null;
+afterEach(() => {
+  cleanup();
+});
+
+function getPlacementTarget() {
+  const puzzle = getPuzzleByIndex(0);
+
+  if (!puzzle) {
+    throw new Error("Starter-pack puzzle 0 is unavailable");
   }
 
-  function handlePlaceRectangle(placement: CandidatePlacement) {
-    setPlacementsByPuzzleId((currentByPuzzleId) => {
-      const currentPlacements = currentByPuzzleId[currentPuzzle.id] ?? [];
-      const nextPlacement = analyzePlacement(
-        currentPuzzle.size,
-        currentPuzzle.clues,
-        placement,
-        currentPlacements,
-      );
-
-      if (!nextPlacement.isValid) {
-        return currentByPuzzleId;
-      }
-
-      return {
-        ...currentByPuzzleId,
-        [currentPuzzle.id]: [...currentPlacements, placement],
-      };
-    });
-  }
-
-  const easy001Placement: CandidatePlacement = {
-    origin: { row: 0, col: 0 },
-    rectangle: { row: 0, col: 0, width: 2, height: 2 },
+  return {
+    puzzle,
+    origin: { row: 0, col: 0 } satisfies CellCoord,
+    rectangle: {
+      row: 0,
+      col: 0,
+      width: 2,
+      height: 2,
+    } satisfies RectangleBounds,
+    target: {
+      row: 1,
+      col: 1,
+    } satisfies CellCoord,
   };
-
-  const easy002Placement: CandidatePlacement = {
-    origin: { row: 0, col: 2 },
-    rectangle: { row: 0, col: 2, width: 1, height: 2 },
-  };
-
-  return (
-    <div>
-      <p>{currentPuzzle.id}</p>
-      <p data-testid="easy-001-count">{(placementsByPuzzleId["easy-001"] ?? []).length}</p>
-      <p data-testid="easy-002-count">{(placementsByPuzzleId["easy-002"] ?? []).length}</p>
-      <button onClick={() => handlePlaceRectangle(currentPuzzleIndex === 0 ? easy001Placement : easy002Placement)} type="button">
-        Place Rectangle
-      </button>
-      <button onClick={() => setCurrentPuzzleIndex(1)} type="button">
-        Go To easy-002
-      </button>
-    </div>
-  );
 }
 
-describe("App placement foundations", () => {
-  it("renders the empty placement prompt before the first placement", () => {
-    render(<App />);
+function placeFirstRectangle() {
+  const { puzzle, origin, rectangle, target } = getPlacementTarget();
+  const board = screen.getByRole("img", { name: new RegExp(`${puzzle.size} by ${puzzle.size} puzzle board`, "i") });
+  const originCell = board.querySelector(`[data-row='${origin.row}'][data-col='${origin.col}'][data-cell-kind='clue']`);
+  const targetCell = board.querySelector(`[data-row='${target.row}'][data-col='${target.col}']`);
 
-    expect(screen.getByText("No rectangles placed yet")).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        "Drag from a numbered clue to preview a rectangle. Release when the area matches the clue and the outline turns valid.",
-      ),
-    ).toBeInTheDocument();
+  expect(originCell).not.toBeNull();
+  expect(targetCell).not.toBeNull();
+
+  const geometry = mockBoardGeometry(board, puzzle.size);
+  const start = geometry.cellCenter(origin);
+  const end = geometry.cellCenter(target);
+
+  fireEvent.pointerDown(originCell!, {
+    pointerId: 1,
+    pointerType: "mouse",
+    clientX: start.clientX,
+    clientY: start.clientY,
   });
 
-  it("keeps placements scoped by puzzle id", () => {
-    render(<PlacementScopeHarness />);
+  fireEvent.pointerMove(targetCell!, {
+    pointerId: 1,
+    pointerType: "mouse",
+    clientX: end.clientX,
+    clientY: end.clientY,
+  });
 
-    fireEvent.click(screen.getByRole("button", { name: "Place Rectangle" }));
-    fireEvent.click(screen.getByRole("button", { name: "Go To easy-002" }));
-    fireEvent.click(screen.getByRole("button", { name: "Place Rectangle" }));
+  fireEvent.pointerUp(targetCell!, {
+    pointerId: 1,
+    pointerType: "mouse",
+    clientX: end.clientX,
+    clientY: end.clientY,
+  });
 
-    expect(screen.getByTestId("easy-001-count")).toHaveTextContent("1");
-    expect(screen.getByTestId("easy-002-count")).toHaveTextContent("1");
+  geometry.restore();
+
+  return { rectangle };
+}
+
+describe("App placement persistence", () => {
+  test("removes the empty-state prompt after the first valid placement", () => {
+    render(<App />);
+
+    expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
+
+    const { rectangle } = placeFirstRectangle();
+
+    expect(screen.queryByLabelText("Placement prompt")).not.toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /4 by 4 puzzle board/i }).querySelectorAll("[data-placed-cell='true']")).toHaveLength(rectangle.width * rectangle.height);
+  });
+
+  test("clears visible placements when navigating to a different puzzle", () => {
+    render(<App />);
+
+    placeFirstRectangle();
+
+    const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
+
+    expect(board.querySelector("[data-placed-cell='true']")).not.toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "Next Puzzle" }));
+
+    const nextBoard = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
+
+    expect(nextBoard.querySelector("[data-placed-cell='true']")).toBeNull();
+    expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
+  });
+
+  test("restores saved placements when returning to a puzzle", () => {
+    render(<App />);
+
+    const { rectangle } = placeFirstRectangle();
+
+    fireEvent.click(screen.getByRole("button", { name: "Next Puzzle" }));
+
+    const nextBoard = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
+    expect(nextBoard.querySelector("[data-placed-cell='true']")).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "Previous" }));
+
+    const restoredBoard = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
+
+    expect(restoredBoard.querySelectorAll("[data-placed-cell='true']")).toHaveLength(
+      rectangle.width * rectangle.height,
+    );
+    expect(restoredBoard.querySelector("[data-placed-rectangle='0']")).not.toBeNull();
+    expect(screen.queryByLabelText("Placement prompt")).not.toBeInTheDocument();
   });
 });

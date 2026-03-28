@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Phase 5 context gathered
-last_updated: "2026-03-28T16:36:20.719Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-28T18:45:36.541Z"
 last_activity: 2026-03-28
 progress:
   total_phases: 8
-  completed_phases: 4
-  total_plans: 11
-  completed_plans: 11
-  percent: 89
+  completed_phases: 5
+  total_plans: 13
+  completed_plans: 13
+  percent: 92
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Players get a polished puzzle experience with trustworthy, deterministic rectangle-validation logic.
-**Current focus:** Phase 04 — correction-controls
+**Current focus:** Phase 05 — puzzle-browser-session-context
 
 ## Current Position
 
-Phase: 5
-Plan: Not started
+Phase: 05 (puzzle-browser-session-context) — EXECUTING
+Plan: 2 of 2
 Status: Phase complete — ready for verification
 Last activity: 2026-03-28
 
-Progress: [█████████░] 89%
+Progress: [█████████░] 92%
 
 ## Performance Metrics
 
@@ -59,6 +59,8 @@ Progress: [█████████░] 89%
 | Phase 03-live-rectangle-placement P02 | 9min | 2 tasks | 8 files |
 | Phase 04 P01 | 15m | 3 tasks | 5 files |
 | Phase 04-correction-controls P02 | 11m | 2 tasks | 6 files |
+| Phase 05 P01 | 18m | 3 tasks | 4 files |
+| Phase 05 P02 | 5m | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -83,6 +85,10 @@ Recent decisions affecting current work:
 - [Phase 04]: Gate reset confirmation strictly on non-empty present placements; empty reset is immediate no-op.
 - [Phase 04-correction-controls]: Use board cell data-placed-rectangle targeting for direct remove events.
 - [Phase 04-correction-controls]: Suppress click follow-up removal after pointer-armed clue taps to avoid duplicate remove actions.
+- [Phase 05]: Implemented PuzzleBrowser as a controlled component with selectedDifficulty and callbacks.
+- [Phase 05]: Sorted filtered puzzle buttons by packIndex to guarantee deterministic order per difficulty.
+- [Phase 05]: Persist only selectedDifficulty via squares.selectedDifficulty.v1 and keep route/view state non-persistent.
+- [Phase 05]: Use explicit browser-entry helpers in integration tests so play assertions remain deterministic.
 
 ### Pending Todos
 
@@ -90,10 +96,12 @@ None yet.
 
 ### Blockers/Concerns
 
-None yet.
+yet.
+
+- Phase 05 Plan 01 build verification blocked by pre-existing TypeScript errors in App.tsx, PuzzleBoard.tsx, and PuzzleBoard.interaction.test.tsx (out of scope for this plan).
 
 ## Session Continuity
 
-Last session: 2026-03-28T16:36:20.710Z
-Stopped at: Phase 5 context gathered
-Resume file: .planning/phases/05-puzzle-browser-session-context/05-CONTEXT.md
+Last session: 2026-03-28T18:45:36.537Z
+Stopped at: Completed 05-02-PLAN.md
+Resume file: None

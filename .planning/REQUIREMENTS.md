@@ -33,14 +33,14 @@
 
 - [x] **PACK-01**: System loads puzzles from the starter-pack JSON file
 - [x] **PACK-02**: System ships with the current 40 handcrafted puzzles from the starter pack
-- [ ] **PACK-03**: Player can browse or select puzzles by difficulty across easy, medium, and hard groups
+- [x] **PACK-03**: Player can browse or select puzzles by difficulty across easy, medium, and hard groups
 - [ ] **PACK-04**: System tracks completion state per puzzle
 - [ ] **PACK-05**: System shows a completion state with replay and next-puzzle navigation when a puzzle is solved
 
 ### Persistence
 
 - [ ] **SAVE-01**: System persists completed puzzle ids in localStorage
-- [ ] **SAVE-02**: System persists the last selected difficulty in localStorage
+- [x] **SAVE-02**: System persists the last selected difficulty in localStorage
 - [ ] **SAVE-03**: System persists tutorial completion state in localStorage
 
 ### Tutorial And Onboarding
@@ -99,11 +99,11 @@
 | RULE-07 | Phase 2 | Pending |
 | PACK-01 | Phase 1 | Complete |
 | PACK-02 | Phase 1 | Complete |
-| PACK-03 | Phase 5 | Pending |
+| PACK-03 | Phase 5 | Complete |
 | PACK-04 | Phase 6 | Pending |
 | PACK-05 | Phase 6 | Pending |
 | SAVE-01 | Phase 6 | Pending |
-| SAVE-02 | Phase 5 | Pending |
+| SAVE-02 | Phase 5 | Complete |
 | SAVE-03 | Phase 7 | Pending |
 | TUT-01 | Phase 7 | Pending |
 | TUT-02 | Phase 7 | Pending |

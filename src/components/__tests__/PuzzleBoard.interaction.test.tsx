@@ -11,6 +11,89 @@ afterEach(() => {
 });
 
 describe("PuzzleBoard live rectangle placement", () => {
+  test("remove callback fires when releasing on a placed rectangle", () => {
+    const puzzle = createPuzzleFixture();
+    const onRemoveRectangle = vi.fn();
+    const placedRectangles = [
+      {
+        origin: { row: 0, col: 0 },
+        rectangle: { row: 0, col: 0, width: 2, height: 2 },
+      },
+    ];
+
+    render(
+      <PuzzleBoard
+        onRemoveRectangle={onRemoveRectangle}
+        placedRectangles={placedRectangles}
+        puzzle={puzzle}
+      />,
+    );
+
+    const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
+    const placedCell = board.querySelector("[data-row='1'][data-col='1'][data-placed-rectangle='0']");
+
+    expect(placedCell).not.toBeNull();
+
+    fireEvent.click(placedCell!);
+
+    expect(onRemoveRectangle).toHaveBeenCalledTimes(1);
+    expect(onRemoveRectangle).toHaveBeenCalledWith(0);
+  });
+
+  test("remove support keeps drag preview and valid release behavior", () => {
+    const puzzle = createPuzzleFixture();
+    const onPlaceRectangle = vi.fn();
+
+    render(
+      <PuzzleBoard
+        onPlaceRectangle={onPlaceRectangle}
+        onRemoveRectangle={vi.fn()}
+        puzzle={puzzle}
+      />,
+    );
+
+    const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
+    const originCell = board.querySelector("[data-row='0'][data-col='0'][data-cell-kind='clue']");
+
+    expect(originCell).not.toBeNull();
+
+    const geometry = mockBoardGeometry(board, puzzle.size);
+    const origin = geometry.cellCenter({ row: 0, col: 0 });
+    const target = geometry.cellCenter({ row: 1, col: 1 });
+    const targetCell = board.querySelector("[data-row='1'][data-col='1']");
+
+    fireEvent.pointerDown(originCell!, {
+      pointerId: 7,
+      pointerType: "mouse",
+      clientX: origin.clientX,
+      clientY: origin.clientY,
+    });
+
+    fireEvent.pointerMove(targetCell!, {
+      pointerId: 7,
+      pointerType: "mouse",
+      clientX: target.clientX,
+      clientY: target.clientY,
+    });
+
+    expect(screen.getByText("Area 4")).toBeInTheDocument();
+    expect(board.querySelectorAll("[data-preview-active='true']")).toHaveLength(4);
+
+    fireEvent.pointerUp(board, {
+      pointerId: 7,
+      pointerType: "mouse",
+      clientX: target.clientX,
+      clientY: target.clientY,
+    });
+
+    expect(onPlaceRectangle).toHaveBeenCalledWith({
+      origin: { row: 0, col: 0 },
+      rectangle: { row: 0, col: 0, width: 2, height: 2 },
+    });
+
+    geometry.restore();
+  });
+
   test("arms from clue cell", () => {
     const puzzle = createPuzzleFixture();
 

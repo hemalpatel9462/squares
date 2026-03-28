@@ -120,6 +120,28 @@ describe("App placement persistence", () => {
     expect(board.querySelector("[data-placed-rectangle='0']")).not.toBeNull();
   });
 
+  test("remove click event clears one rectangle and undo restores both", () => {
+    render(<App />);
+
+    placeFirstRectangle();
+    placeRectangle({ row: 1, col: 3 }, { row: 0, col: 2 }, 2);
+
+    const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
+    const secondRectangleCell = board.querySelector("[data-row='0'][data-col='2'][data-placed-rectangle='1']");
+
+    expect(secondRectangleCell).not.toBeNull();
+
+    fireEvent.click(secondRectangleCell!);
+
+    expect(board.querySelector("[data-placed-rectangle='1']")).toBeNull();
+    expect(board.querySelector("[data-placed-rectangle='0']")).not.toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "Undo" }));
+
+    expect(board.querySelector("[data-placed-rectangle='1']")).not.toBeNull();
+    expect(board.querySelector("[data-placed-rectangle='0']")).not.toBeNull();
+  });
+
   test("removes the empty-state prompt after the first valid placement", () => {
     render(<App />);
 

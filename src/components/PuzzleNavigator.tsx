@@ -1,6 +1,7 @@
 interface PuzzleNavigatorProps {
   canGoPrevious: boolean;
   canGoNext: boolean;
+  onBackToBrowser?: () => void;
   onPrevious: () => void;
   onNext: () => void;
 }
@@ -8,11 +9,21 @@ interface PuzzleNavigatorProps {
 export function PuzzleNavigator({
   canGoNext,
   canGoPrevious,
+  onBackToBrowser,
   onNext,
   onPrevious,
 }: PuzzleNavigatorProps) {
   return (
     <nav aria-label="Puzzle navigation" className="puzzle-navigator">
+      {onBackToBrowser ? (
+        <button
+          className="puzzle-navigator__button"
+          onClick={onBackToBrowser}
+          type="button"
+        >
+          Back to Browser
+        </button>
+      ) : null}
       <button
         className="puzzle-navigator__button"
         disabled={!canGoPrevious}

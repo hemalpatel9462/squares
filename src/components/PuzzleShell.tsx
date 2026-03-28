@@ -8,6 +8,7 @@ interface PuzzleShellProps {
   canUndo?: boolean;
   canGoPrevious: boolean;
   canGoNext: boolean;
+  onBackToBrowser?: () => void;
   onPrevious: () => void;
   onNext: () => void;
   onUndo?: () => void;
@@ -27,6 +28,7 @@ export function PuzzleShell({
   canGoNext,
   canGoPrevious,
   emptyPlacementPrompt,
+  onBackToBrowser,
   onNext,
   onPrevious,
   onReset,
@@ -48,6 +50,7 @@ export function PuzzleShell({
           <PuzzleNavigator
             canGoNext={canGoNext}
             canGoPrevious={canGoPrevious}
+            onBackToBrowser={onBackToBrowser}
             onNext={onNext}
             onPrevious={onPrevious}
           />

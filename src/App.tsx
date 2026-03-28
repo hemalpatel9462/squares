@@ -1,12 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+import PuzzleBrowser from "@/components/PuzzleBrowser";
 import PuzzleShell from "@/components/PuzzleShell";
-import { getPuzzleByIndex } from "@/data/starterPack";
+import { getPuzzleById, getPuzzleByIndex, starterPackPuzzles } from "@/data/starterPack";
 import { analyzeBoard, analyzePlacement } from "@/rules";
 import type { PlacementSnapshot, PuzzlePlacementHistory } from "@/types/play";
+import type { Difficulty } from "@/types/puzzle";
 import type { CandidatePlacement } from "@/types/rules";
 
 const EMPTY_PLACEMENT_SNAPSHOT: PlacementSnapshot = [];
+const SELECTED_DIFFICULTY_STORAGE_KEY = "squares.selectedDifficulty.v1";
+
+function isDifficulty(value: string | null): value is Difficulty {
+  return value === "easy" || value === "medium" || value === "hard";
+}
+
+function resolveInitialDifficulty(fallbackDifficulty: Difficulty): Difficulty {
+  try {
+    const storedDifficulty = window.localStorage.getItem(SELECTED_DIFFICULTY_STORAGE_KEY);
+
+    if (isDifficulty(storedDifficulty)) {
+      return storedDifficulty;
+    }
+  } catch {
+    return fallbackDifficulty;
+  }
+
+  return fallbackDifficulty;
+}
 
 function getPuzzleHistory(
   historyByPuzzleId: Record<string, PuzzlePlacementHistory>,
@@ -35,11 +56,23 @@ function pushPuzzleSnapshot(
 }
 
 export default function App() {
+  const [activeView, setActiveView] = useState<"browser" | "play">("browser");
   const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState(0);
   const [placementHistoryByPuzzleId, setPlacementHistoryByPuzzleId] = useState<
     Record<string, PuzzlePlacementHistory>
   >({});
   const currentPuzzle = getPuzzleByIndex(currentPuzzleIndex);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>(() =>
+    resolveInitialDifficulty(currentPuzzle?.difficulty ?? "easy")
+  );
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(SELECTED_DIFFICULTY_STORAGE_KEY, selectedDifficulty);
+    } catch {
+      // Ignore persistence errors to keep play flow working.
+    }
+  }, [selectedDifficulty]);
 
   if (!currentPuzzle) {
     return (
@@ -64,6 +97,18 @@ export default function App() {
   const currentPlacements = currentHistory.present;
   const currentBoardAnalysis = analyzeBoard(currentPuzzle.size, currentPuzzle.clues, currentPlacements);
 
+  function handleSelectPuzzle(selection: { puzzleId: string; difficulty: Difficulty }) {
+    const selectedPuzzle = getPuzzleById(selection.puzzleId);
+
+    if (!selectedPuzzle) {
+      return;
+    }
+
+    setCurrentPuzzleIndex(selectedPuzzle.packIndex);
+    setSelectedDifficulty(selectedPuzzle.difficulty);
+    setActiveView("play");
+  }
+
   function handlePlaceRectangle(placement: CandidatePlacement) {
     setPlacementHistoryByPuzzleId((currentByPuzzleId) => {
       const currentPlacements = getPuzzleHistory(currentByPuzzleId, currentPuzzle.id).present;
@@ -79,6 +124,34 @@ export default function App() {
       }
 
       return pushPuzzleSnapshot(currentByPuzzleId, currentPuzzle.id, [...currentPlacements, placement]);
+    });
+  }
+
+  function handleNextPuzzle() {
+    setCurrentPuzzleIndex((index) => {
+      const nextIndex = index + 1;
+      const nextPuzzle = getPuzzleByIndex(nextIndex);
+
+      if (!nextPuzzle) {
+        return index;
+      }
+
+      setSelectedDifficulty(nextPuzzle.difficulty);
+      return nextIndex;
+    });
+  }
+
+  function handlePreviousPuzzle() {
+    setCurrentPuzzleIndex((index) => {
+      const previousIndex = index - 1;
+      const previousPuzzle = getPuzzleByIndex(previousIndex);
+
+      if (!previousPuzzle) {
+        return index;
+      }
+
+      setSelectedDifficulty(previousPuzzle.difficulty);
+      return previousIndex;
     });
   }
 
@@ -145,25 +218,35 @@ export default function App() {
     <main className="app-shell">
       <div aria-hidden="true" className="ambient-glow ambient-glow-left" />
       <div aria-hidden="true" className="ambient-glow ambient-glow-right" />
-      <PuzzleShell
-        canUndo={currentHistory.past.length > 0}
-        canGoNext={getPuzzleByIndex(currentPuzzleIndex + 1) !== undefined}
-        canGoPrevious={currentPuzzleIndex > 0}
-        onNext={() => {
-          setCurrentPuzzleIndex((index) => index + 1);
-        }}
-        onReset={handleReset}
-        onRemoveRectangle={handleRemoveRectangle}
-        onUndo={handleUndo}
-        onPrevious={() => {
-          setCurrentPuzzleIndex((index) => index - 1);
-        }}
-        onPlaceRectangle={handlePlaceRectangle}
-        placedRectangles={currentPlacements}
-        puzzle={currentPuzzle}
-        emptyPlacementPrompt={emptyPlacementPrompt}
-      />
-      <div aria-hidden="true" data-board-solved={currentBoardAnalysis.isSolved} hidden />
+      {activeView === "browser" ? (
+        <PuzzleBrowser
+          puzzles={starterPackPuzzles}
+          selectedDifficulty={selectedDifficulty}
+          onSelectDifficulty={setSelectedDifficulty}
+          onSelectPuzzle={handleSelectPuzzle}
+        />
+      ) : (
+        <>
+          <PuzzleShell
+            canUndo={currentHistory.past.length > 0}
+            canGoNext={getPuzzleByIndex(currentPuzzleIndex + 1) !== undefined}
+            canGoPrevious={currentPuzzleIndex > 0}
+            onBackToBrowser={() => {
+              setActiveView("browser");
+            }}
+            onNext={handleNextPuzzle}
+            onReset={handleReset}
+            onRemoveRectangle={handleRemoveRectangle}
+            onUndo={handleUndo}
+            onPrevious={handlePreviousPuzzle}
+            onPlaceRectangle={handlePlaceRectangle}
+            placedRectangles={currentPlacements}
+            puzzle={currentPuzzle}
+            emptyPlacementPrompt={emptyPlacementPrompt}
+          />
+          <div aria-hidden="true" data-board-solved={currentBoardAnalysis.isSolved} hidden />
+        </>
+      )}
     </main>
   );
 }

@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Deterministic Rectangle Rules** - Implement the UI-independent validation and solve-detection engine.
 - [ ] **Phase 3: Live Rectangle Placement** - Deliver drag-based rectangle placement with immediate validity feedback.
 - [ ] **Phase 4: Correction Controls** - Let players remove, undo, and reset without friction.
-- [ ] **Phase 5: Puzzle Browser & Session Context** - Add difficulty-based puzzle browsing and restore the player's browsing context.
+- [x] **Phase 5: Puzzle Browser & Session Context** - Add difficulty-based puzzle browsing and restore the player's browsing context. (completed 2026-03-28)
 - [ ] **Phase 6: Completion Tracking & Next Puzzle Flow** - Mark solved puzzles, persist progress, and guide players forward.
 - [ ] **Phase 7: First-Use Tutorial** - Teach new players the rules and allow tutorial replay later.
 - [ ] **Phase 8: Cross-Device Usability Polish** - Harden readability and touch usability across desktop and mobile.
@@ -92,8 +92,8 @@ Plans:
   3. Player can move from the browser into a chosen puzzle with that difficulty context still visible while playing.
 **Plans**: 2 plans
 Plans:
-- [ ] 05-01-PLAN.md — Build the dedicated difficulty-tab browser component with filtered puzzle selection and UI tests
-- [ ] 05-02-PLAN.md — Integrate browser-first App flow, selected-difficulty persistence, and browser-entry regression updates
+- [x] 05-01-PLAN.md — Build the dedicated difficulty-tab browser component with filtered puzzle selection and UI tests
+- [x] 05-02-PLAN.md — Integrate browser-first App flow, selected-difficulty persistence, and browser-entry regression updates
 **UI hint**: yes
 
 ### Phase 6: Completion Tracking & Next Puzzle Flow
@@ -141,7 +141,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 | 2. Deterministic Rectangle Rules | 3/3 | Complete | 2026-03-28 |
 | 3. Live Rectangle Placement | 2/2 | In Progress | - |
 | 4. Correction Controls | 1/2 | In Progress|  |
-| 5. Puzzle Browser & Session Context | 1/2 | In Progress|  |
+| 5. Puzzle Browser & Session Context | 2/2 | Complete    | 2026-03-28 |
 | 6. Completion Tracking & Next Puzzle Flow | 0/TBD | Not started | - |
 | 7. First-Use Tutorial | 0/TBD | Not started | - |
 | 8. Cross-Device Usability Polish | 0/TBD | Not started | - |

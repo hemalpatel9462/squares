@@ -2,7 +2,10 @@ import { describe, expect, it } from "vitest";
 
 import { analyzeBoard } from "@/rules";
 import { starterPackPuzzles } from "@/data/starterPack";
-import { findOriginForSolutionRectangle } from "@/rules/__tests__/ruleTestUtils";
+import {
+  createPlacement,
+  findOriginForSolutionRectangle,
+} from "@/rules/__tests__/ruleTestUtils";
 
 describe("starter pack solution fixtures", () => {
   it("exposes the board analyzer for shipped-fixture verification", () => {
@@ -10,7 +13,23 @@ describe("starter pack solution fixtures", () => {
     expect(starterPackPuzzles).toHaveLength(40);
   });
 
-  it.todo("accepts shipped starter-pack solution rectangles as solved partitions");
+  it("accepts shipped starter-pack solution rectangles as solved partitions", () => {
+    for (const puzzle of starterPackPuzzles) {
+      const placements = puzzle.solution.map((rectangle) =>
+        createPlacement(findOriginForSolutionRectangle(puzzle.clues, rectangle), {
+          row: rectangle.row,
+          col: rectangle.col,
+          width: rectangle.width,
+          height: rectangle.height,
+        }),
+      );
+      const analysis = analyzeBoard(puzzle.size, puzzle.clues, placements);
+
+      expect(analysis.isSolved).toBe(true);
+      expect(analysis.issues).toEqual([]);
+      expect(analysis.invalidPlacements).toEqual([]);
+    }
+  });
 
   it("can derive explicit origins from shipped solution rectangles", () => {
     const puzzle = starterPackPuzzles[0];

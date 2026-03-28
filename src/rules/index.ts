@@ -5,6 +5,11 @@ import type {
   PlacementAnalysis,
   PlacementIssue,
 } from "@/types/rules";
+import {
+  analyzePlacement,
+  getPrimaryPlacementIssue,
+  isPlacementValid,
+} from "./placementAnalysis";
 
 export {
   PLACEMENT_ISSUE_PRIORITY,
@@ -21,27 +26,6 @@ export {
 
 function notImplemented(functionName: string): never {
   throw new Error(`@/rules ${functionName} is not implemented yet.`);
-}
-
-function analyzePlacement(
-  _size: number,
-  _clues: PuzzleClue[],
-  _placement: CandidatePlacement,
-  _placedRectangles: CandidatePlacement[] = [],
-): PlacementAnalysis {
-  return notImplemented("analyzePlacement");
-}
-
-function getPrimaryPlacementIssue(
-  _issues: PlacementIssue[],
-): PlacementIssue | null {
-  return notImplemented("getPrimaryPlacementIssue");
-}
-
-function isPlacementValid(
-  _analysis: Pick<PlacementAnalysis, "isValid">,
-): boolean {
-  return notImplemented("isPlacementValid");
 }
 
 function analyzeBoard(

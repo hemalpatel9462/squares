@@ -82,6 +82,45 @@ export default function App() {
     });
   }
 
+  function handleUndo() {
+    setPlacementHistoryByPuzzleId((currentByPuzzleId) => {
+      const currentHistory = getPuzzleHistory(currentByPuzzleId, currentPuzzle.id);
+
+      if (currentHistory.past.length === 0) {
+        return currentByPuzzleId;
+      }
+
+      const nextPast = currentHistory.past.slice(0, -1);
+      const nextPresent = currentHistory.past[currentHistory.past.length - 1];
+
+      return {
+        ...currentByPuzzleId,
+        [currentPuzzle.id]: {
+          past: nextPast,
+          present: nextPresent,
+        },
+      };
+    });
+  }
+
+  function handleReset() {
+    setPlacementHistoryByPuzzleId((currentByPuzzleId) => {
+      const currentHistory = getPuzzleHistory(currentByPuzzleId, currentPuzzle.id);
+
+      if (currentHistory.present.length === 0) {
+        return currentByPuzzleId;
+      }
+
+      const shouldReset = window.confirm("Reset this puzzle and clear all placed rectangles?");
+
+      if (!shouldReset) {
+        return currentByPuzzleId;
+      }
+
+      return pushPuzzleSnapshot(currentByPuzzleId, currentPuzzle.id, []);
+    });
+  }
+
   const emptyPlacementPrompt = currentPlacements.length === 0
     ? {
         heading: "No rectangles placed yet",
@@ -94,11 +133,14 @@ export default function App() {
       <div aria-hidden="true" className="ambient-glow ambient-glow-left" />
       <div aria-hidden="true" className="ambient-glow ambient-glow-right" />
       <PuzzleShell
+        canUndo={currentHistory.past.length > 0}
         canGoNext={getPuzzleByIndex(currentPuzzleIndex + 1) !== undefined}
         canGoPrevious={currentPuzzleIndex > 0}
         onNext={() => {
           setCurrentPuzzleIndex((index) => index + 1);
         }}
+        onReset={handleReset}
+        onUndo={handleUndo}
         onPrevious={() => {
           setCurrentPuzzleIndex((index) => index - 1);
         }}

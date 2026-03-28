@@ -5,10 +5,13 @@ import type { PuzzleListItem } from "@/types/puzzle";
 import type { CandidatePlacement } from "@/types/rules";
 
 interface PuzzleShellProps {
+  canUndo?: boolean;
   canGoPrevious: boolean;
   canGoNext: boolean;
   onPrevious: () => void;
   onNext: () => void;
+  onUndo?: () => void;
+  onReset?: () => void;
   puzzle: PuzzleListItem;
   placedRectangles?: CandidatePlacement[];
   onPlaceRectangle?: (placement: CandidatePlacement) => void;
@@ -19,11 +22,14 @@ interface PuzzleShellProps {
 }
 
 export function PuzzleShell({
+  canUndo = false,
   canGoNext,
   canGoPrevious,
   emptyPlacementPrompt,
   onNext,
   onPrevious,
+  onReset,
+  onUndo,
   onPlaceRectangle,
   placedRectangles,
   puzzle,
@@ -46,6 +52,19 @@ export function PuzzleShell({
         </header>
 
         <div className="puzzle-shell__board">
+          <div className="puzzle-corrections" role="group" aria-label="Puzzle corrections">
+            <button
+              className="puzzle-corrections__button"
+              disabled={!canUndo}
+              onClick={onUndo}
+              type="button"
+            >
+              Undo
+            </button>
+            <button className="puzzle-corrections__button" onClick={onReset} type="button">
+              Reset
+            </button>
+          </div>
           {emptyPlacementPrompt ? (
             <div
               aria-label="Placement prompt"

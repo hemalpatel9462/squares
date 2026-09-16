@@ -1,45 +1,25 @@
+import { ArrowLeft } from "lucide-react";
+
 interface PuzzleNavigatorProps {
-  canGoPrevious: boolean;
-  canGoNext: boolean;
   onBackToBrowser?: () => void;
-  onPrevious: () => void;
-  onNext: () => void;
 }
 
 export function PuzzleNavigator({
-  canGoNext,
-  canGoPrevious,
   onBackToBrowser,
-  onNext,
-  onPrevious,
 }: PuzzleNavigatorProps) {
   return (
     <nav aria-label="Puzzle navigation" className="puzzle-navigator">
       {onBackToBrowser ? (
         <button
           className="puzzle-navigator__button"
+          aria-label="Back to Browser"
+          title="Back to Browser"
           onClick={onBackToBrowser}
           type="button"
         >
-          Back to Browser
+          <ArrowLeft aria-hidden="true" className="icon" />
         </button>
       ) : null}
-      <button
-        className="puzzle-navigator__button"
-        disabled={!canGoPrevious}
-        onClick={onPrevious}
-        type="button"
-      >
-        Previous
-      </button>
-      <button
-        className="puzzle-navigator__button puzzle-navigator__button--primary"
-        disabled={!canGoNext}
-        onClick={onNext}
-        type="button"
-      >
-        Next Puzzle
-      </button>
     </nav>
   );
 }

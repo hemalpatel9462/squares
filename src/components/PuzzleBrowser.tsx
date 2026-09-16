@@ -1,6 +1,7 @@
 import type { Difficulty, PuzzleListItem } from "@/types/puzzle";
 
 interface PuzzleBrowserProps {
+  completedPuzzleIds?: ReadonlySet<string>;
   puzzles: PuzzleListItem[];
   selectedDifficulty: Difficulty;
   onSelectDifficulty: (difficulty: Difficulty) => void;
@@ -14,6 +15,7 @@ const DIFFICULTY_TABS: Array<{ difficulty: Difficulty; label: "Easy" | "Medium" 
 ];
 
 export function PuzzleBrowser({
+  completedPuzzleIds = new Set<string>(),
   puzzles,
   selectedDifficulty,
   onSelectDifficulty,
@@ -61,18 +63,25 @@ export function PuzzleBrowser({
         id={panelId}
         role="tabpanel"
       >
-        {visiblePuzzles.map((puzzle) => (
-          <button
-            className="puzzle-browser__puzzle-button"
-            key={puzzle.id}
-            onClick={() =>
-              onSelectPuzzle({ puzzleId: puzzle.id, difficulty: selectedDifficulty })
-            }
-            type="button"
-          >
-            Puzzle {puzzle.id}
-          </button>
-        ))}
+        {visiblePuzzles.map((puzzle, index) => {
+          const puzzleNumber = index + 1;
+          const isCompleted = completedPuzzleIds.has(puzzle.id);
+
+          return (
+            <button
+              aria-label={`${puzzle.difficultyLabel} puzzle ${puzzleNumber}${isCompleted ? ", completed" : ""}`}
+              className="puzzle-browser__puzzle-button"
+              data-completed={isCompleted ? "true" : "false"}
+              key={puzzle.id}
+              onClick={() =>
+                onSelectPuzzle({ puzzleId: puzzle.id, difficulty: selectedDifficulty })
+              }
+              type="button"
+            >
+              {puzzleNumber}
+            </button>
+          );
+        })}
       </div>
     </section>
   );

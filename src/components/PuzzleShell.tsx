@@ -1,3 +1,5 @@
+import { RotateCcw, Undo2 } from "lucide-react";
+
 import PuzzleBoard from "@/components/PuzzleBoard";
 import PuzzleMeta from "@/components/PuzzleMeta";
 import PuzzleNavigator from "@/components/PuzzleNavigator";
@@ -6,83 +8,103 @@ import type { CandidatePlacement } from "@/types/rules";
 
 interface PuzzleShellProps {
   canUndo?: boolean;
-  canGoPrevious: boolean;
   canGoNext: boolean;
   onBackToBrowser?: () => void;
-  onPrevious: () => void;
   onNext: () => void;
+  onReplay?: () => void;
+  isComplete?: boolean;
   onUndo?: () => void;
   onReset?: () => void;
   puzzle: PuzzleListItem;
   placedRectangles?: CandidatePlacement[];
   onPlaceRectangle?: (placement: CandidatePlacement) => void;
   onRemoveRectangle?: (rectangleIndex: number) => void;
-  emptyPlacementPrompt?: {
-    heading: string;
-    body: string;
-  } | null;
 }
 
 export function PuzzleShell({
   canUndo = false,
   canGoNext,
-  canGoPrevious,
-  emptyPlacementPrompt,
   onBackToBrowser,
   onNext,
-  onPrevious,
   onReset,
   onUndo,
   onPlaceRectangle,
   onRemoveRectangle,
+  onReplay,
   placedRectangles,
   puzzle,
+  isComplete = false,
 }: PuzzleShellProps) {
   return (
-    <section aria-label={`Puzzle ${puzzle.id} board shell`} className="puzzle-shell">
-      <div className="puzzle-shell__content">
-        <header className="puzzle-shell__header">
-          <div className="puzzle-shell__intro">
-            <p className="eyebrow">Squares</p>
-            <h1 className="puzzle-shell__title">Starter Pack Board</h1>
-          </div>
+    <section aria-label="Squares puzzle" className="puzzle-shell">
+      <div className="puzzle-stage">
+        <header className="top-bar">
+          <PuzzleNavigator onBackToBrowser={onBackToBrowser} />
           <PuzzleMeta puzzle={puzzle} />
-          <PuzzleNavigator
-            canGoNext={canGoNext}
-            canGoPrevious={canGoPrevious}
-            onBackToBrowser={onBackToBrowser}
-            onNext={onNext}
-            onPrevious={onPrevious}
-          />
-        </header>
-
-        <div className="puzzle-shell__board">
-          <div className="puzzle-corrections" role="group" aria-label="Puzzle corrections">
+          <div aria-label="Puzzle actions" className="puzzle-corrections" role="group">
             <button
+              aria-label="Undo last placement"
               className="puzzle-corrections__button"
               disabled={!canUndo}
+              title="Undo last placement"
               onClick={onUndo}
               type="button"
             >
-              Undo
+              <Undo2 aria-hidden="true" className="icon" />
             </button>
-            <button className="puzzle-corrections__button" onClick={onReset} type="button">
-              Reset
+            <button
+              aria-label="Reset puzzle"
+              className="puzzle-corrections__button"
+              onClick={onReset}
+              title="Reset puzzle"
+              type="button"
+            >
+              <RotateCcw aria-hidden="true" className="icon" />
             </button>
           </div>
-          {emptyPlacementPrompt ? (
-            <div
-              aria-label="Placement prompt"
-              className="hero-panel"
-              style={{ marginBottom: "16px", padding: "16px" }}
-            >
-              <h2
-                className="puzzle-shell__title"
-                style={{ fontSize: "20px", marginBottom: "8px" }}
+        </header>
+
+        <main className="game-area">
+          <div className="puzzle-shell__board">
+          {isComplete ? (
+            <div className="completion-modal" role="presentation">
+              <div
+                aria-modal="true"
+                aria-label="Puzzle complete"
+                className="completion-panel"
+                role="dialog"
               >
-                {emptyPlacementPrompt.heading}
-              </h2>
-              <p className="hero-copy">{emptyPlacementPrompt.body}</p>
+                <p className="eyebrow">Completed</p>
+                <p className="completion-panel__meta">
+                  {`${puzzle.difficultyLabel} · Puzzle ${puzzle.packIndex + 1} of ${puzzle.packTotal}`}
+                </p>
+                <h2 className="completion-panel__title" id="completion-modal-title">
+                  Puzzle solved!
+                </h2>
+                <p className="hero-copy">Every square is covered by a valid rectangle.</p>
+                <div className="completion-panel__actions">
+                  <button className="completion-button" onClick={onReplay} type="button">
+                    Replay
+                  </button>
+                  <button
+                    className="completion-button completion-button--primary"
+                    disabled={!canGoNext}
+                    onClick={onNext}
+                    type="button"
+                  >
+                    Next Puzzle
+                  </button>
+                  {onBackToBrowser ? (
+                    <button
+                      className="completion-button"
+                      onClick={onBackToBrowser}
+                      type="button"
+                    >
+                      Choose Puzzle
+                    </button>
+                  ) : null}
+                </div>
+              </div>
             </div>
           ) : null}
           <PuzzleBoard
@@ -91,7 +113,8 @@ export function PuzzleShell({
             placedRectangles={placedRectangles}
             puzzle={puzzle}
           />
-        </div>
+          </div>
+        </main>
       </div>
     </section>
   );

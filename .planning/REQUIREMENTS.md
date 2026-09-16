@@ -21,13 +21,13 @@
 
 ### Puzzle Rules Engine
 
-- [ ] **RULE-01**: System rejects rectangles that leave the board bounds
-- [ ] **RULE-02**: System rejects rectangles that overlap an existing placed rectangle
-- [ ] **RULE-03**: System rejects rectangles that include another clue cell
-- [ ] **RULE-04**: System rejects rectangles that do not include the selected clue cell
-- [ ] **RULE-05**: System rejects rectangles whose area does not match the selected clue value
-- [ ] **RULE-06**: System can determine when the board is fully covered with valid non-overlapping rectangles and all clues are satisfied
-- [ ] **RULE-07**: Puzzle validation logic is deterministic, unit-testable, and UI-independent
+- [x] **RULE-01**: System rejects rectangles that leave the board bounds
+- [x] **RULE-02**: System rejects rectangles that overlap an existing placed rectangle
+- [x] **RULE-03**: System rejects rectangles that include another clue cell
+- [x] **RULE-04**: System rejects rectangles that do not include the selected clue cell
+- [x] **RULE-05**: System rejects rectangles whose area does not match the selected clue value
+- [x] **RULE-06**: System can determine when the board is fully covered with valid non-overlapping rectangles and all clues are satisfied
+- [x] **RULE-07**: Puzzle validation logic is deterministic, unit-testable, and UI-independent
 
 ### Progression And Content
 
@@ -90,13 +90,13 @@
 | PLAY-03 | Phase 3 | Complete |
 | PLAY-04 | Phase 3 | Complete |
 | PLAY-05 | Phase 4 | Complete |
-| RULE-01 | Phase 2 | Pending |
-| RULE-02 | Phase 2 | Pending |
-| RULE-03 | Phase 2 | Pending |
-| RULE-04 | Phase 2 | Pending |
-| RULE-05 | Phase 2 | Pending |
-| RULE-06 | Phase 2 | Pending |
-| RULE-07 | Phase 2 | Pending |
+| RULE-01 | Phase 2 | Complete |
+| RULE-02 | Phase 2 | Complete |
+| RULE-03 | Phase 2 | Complete |
+| RULE-04 | Phase 2 | Complete |
+| RULE-05 | Phase 2 | Complete |
+| RULE-06 | Phase 2 | Complete |
+| RULE-07 | Phase 2 | Complete |
 | PACK-01 | Phase 1 | Complete |
 | PACK-02 | Phase 1 | Complete |
 | PACK-03 | Phase 5 | Complete |

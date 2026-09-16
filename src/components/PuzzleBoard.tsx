@@ -15,8 +15,10 @@ export const TOUCH_DRAG_THRESHOLD_PX = 10;
 const VALID_SETTLE_DURATION_MS = 180;
 const INVALID_SNAPBACK_DURATION_MS = 220;
 
+const CLUE_COLOR_COUNT = 12;
+
 interface PuzzleBoardProps {
-  puzzle: PuzzleListItem;
+  puzzle: Pick<PuzzleListItem, "id" | "size" | "clues">;
   placedRectangles?: CandidatePlacement[];
   onPlaceRectangle?: (placement: CandidatePlacement) => void;
   onRemoveRectangle?: (rectangleIndex: number) => void;
@@ -96,12 +98,14 @@ function getRectangleCenterDistance(candidate: CandidatePlacement, target: CellC
   return Math.hypot(centerRow - targetRow, centerCol - targetCol);
 }
 
-function buildCandidatePlacement(size: number, origin: CellCoord, target: CellCoord): CandidatePlacement {
+function buildCandidatePlacement(
+  size: number,
+  origin: CellCoord,
+  target: CellCoord,
+  selectionBounds: PointerDragSession["selectionBounds"],
+): CandidatePlacement {
   const candidates: CandidatePlacement[] = [];
-  const minRow = Math.min(origin.row, target.row);
-  const maxRow = Math.max(origin.row, target.row);
-  const minCol = Math.min(origin.col, target.col);
-  const maxCol = Math.max(origin.col, target.col);
+  const { minRow, maxRow, minCol, maxCol } = selectionBounds;
 
   for (let row = 0; row <= minRow; row += 1) {
     for (let bottom = maxRow; bottom < size; bottom += 1) {
@@ -140,9 +144,10 @@ function createPreview(
   clues: PuzzleClue[],
   origin: CellCoord,
   target: CellCoord,
+  selectionBounds: PointerDragSession["selectionBounds"],
   placedRectangles: CandidatePlacement[],
 ): PlacementAnalysis {
-  const candidate = buildCandidatePlacement(size, origin, target);
+  const candidate = buildCandidatePlacement(size, origin, target, selectionBounds);
 
   return analyzePlacement(size, clues, candidate, placedRectangles);
 }
@@ -161,7 +166,13 @@ export function PuzzleBoard({
   const boardRef = useRef<HTMLDivElement | null>(null);
 
   const clueMap = useMemo(
-    () => new Map(puzzle.clues.map((clue) => [`${clue.row}:${clue.col}`, clue.value] as const)),
+    () => new Map<string, number>(puzzle.clues.map((clue) => [`${clue.row}:${clue.col}`, clue.value])),
+    [puzzle.clues],
+  );
+  const clueColorIndexMap = useMemo(
+    () => new Map<string, number>(
+      puzzle.clues.map((clue, index) => [toCellKey(clue), index % CLUE_COLOR_COUNT]),
+    ),
     [puzzle.clues],
   );
 
@@ -185,8 +196,11 @@ export function PuzzleBoard({
   const preview = session?.preview ?? null;
   const previewCellKeys = new Set(preview?.coveredCellKeys ?? []);
   const placedCellMap = new Map<string, number>();
+  const placedColorMap = new Map<string, number>();
 
   placedRectangles.forEach((placement, index) => {
+    const colorIndex = clueColorIndexMap.get(toCellKey(placement.origin));
+
     for (
       let row = placement.rectangle.row;
       row < placement.rectangle.row + placement.rectangle.height;
@@ -198,6 +212,9 @@ export function PuzzleBoard({
         col += 1
       ) {
         placedCellMap.set(`${row}:${col}`, index);
+        if (colorIndex !== undefined) {
+          placedColorMap.set(`${row}:${col}`, colorIndex);
+        }
       }
     }
   });
@@ -214,6 +231,7 @@ export function PuzzleBoard({
       key,
       clueValue,
       placedRectangleIndex: placedCellMap.get(key) ?? null,
+      colorIndex: placedColorMap.get(key) ?? clueColorIndexMap.get(key),
       isPreviewed: previewCellKeys.has(key),
       isPreviewOrigin: session?.origin.row === row && session.origin.col === col,
     };
@@ -268,6 +286,12 @@ export function PuzzleBoard({
       startClientX: event.clientX ?? 0,
       startClientY: event.clientY ?? 0,
       currentCell: origin,
+      selectionBounds: {
+        minRow: origin.row,
+        maxRow: origin.row,
+        minCol: origin.col,
+        maxCol: origin.col,
+      },
       phase: "armed",
       preview: null,
     });
@@ -322,15 +346,24 @@ export function PuzzleBoard({
       }
     }
 
+    const selectionBounds = {
+      minRow: Math.min(current.selectionBounds.minRow, nextCell.row),
+      maxRow: Math.max(current.selectionBounds.maxRow, nextCell.row),
+      minCol: Math.min(current.selectionBounds.minCol, nextCell.col),
+      maxCol: Math.max(current.selectionBounds.maxCol, nextCell.col),
+    };
+
     syncSession({
       ...current,
       currentCell: nextCell,
+      selectionBounds,
       phase: "dragging",
       preview: createPreview(
         puzzle.size,
         puzzle.clues,
         current.origin,
         nextCell,
+        selectionBounds,
         placedRectangles,
       ),
     });
@@ -408,8 +441,8 @@ export function PuzzleBoard({
   const previewLabel = preview ? getPreviewLabel(preview.primaryIssue) : null;
 
   return (
-    <div className="board-card">
-      <div className="board-card__status" aria-live="polite">
+    <div className="board-stage">
+      <div className="board-status" aria-live="polite">
         {preview ? (
           <div className="board-preview-chip" data-tone={previewTone}>
             <span>Area {preview.rectangleArea}</span>
@@ -433,7 +466,7 @@ export function PuzzleBoard({
           handlePointerUp(event);
         }}
         ref={boardRef}
-        role="img"
+        role="grid"
         style={{ gridTemplateColumns: `repeat(${puzzle.size}, minmax(0, 1fr))` }}
       >
         {cells.map((cell) => {
@@ -447,6 +480,7 @@ export function PuzzleBoard({
               className={`board-cell${isClue ? " board-cell-clue" : ""}`}
               data-cell-kind={isClue ? "clue" : "empty"}
               data-col={cell.col}
+              data-color-index={cell.colorIndex}
               data-placed-cell={placedRectangleIndex !== null ? "true" : undefined}
               data-placed-rectangle={
                 placedRectangleIndex !== null ? String(placedRectangleIndex) : undefined
@@ -455,6 +489,12 @@ export function PuzzleBoard({
               data-preview-origin={cell.isPreviewOrigin ? "true" : undefined}
               data-preview-state={previewState}
               data-row={cell.row}
+              aria-label={
+                isClue
+                  ? `Row ${cell.row + 1}, column ${cell.col + 1}, clue ${cell.clueValue}`
+                  : `Row ${cell.row + 1}, column ${cell.col + 1}, empty`
+              }
+              role="gridcell"
               onPointerEnter={(event) => {
                 handlePointerMove(
                   event.pointerId,

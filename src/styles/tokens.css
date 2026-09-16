@@ -1,4 +1,6 @@
 :root {
+  --top-bar-height: 56px;
+  --game-padding: clamp(12px, 3vw, 32px);
   font-family: Manrope, "Avenir Next", "Segoe UI", sans-serif;
   line-height: 1.5;
   font-weight: 400;

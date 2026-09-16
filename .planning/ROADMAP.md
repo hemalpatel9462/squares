@@ -14,8 +14,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Starter Pack Board Shell** - Load the shipped puzzle pack and render a clear playable board shell.
 - [x] **Phase 2: Deterministic Rectangle Rules** - Implement the UI-independent validation and solve-detection engine.
-- [ ] **Phase 3: Live Rectangle Placement** - Deliver drag-based rectangle placement with immediate validity feedback.
-- [ ] **Phase 4: Correction Controls** - Let players remove, undo, and reset without friction.
+- [x] **Phase 3: Live Rectangle Placement** - Deliver drag-based rectangle placement with immediate validity feedback. (completed 2026-03-28)
+- [x] **Phase 4: Correction Controls** - Let players remove, undo, and reset without friction. (completed 2026-03-28)
 - [x] **Phase 5: Puzzle Browser & Session Context** - Add difficulty-based puzzle browsing and restore the player's browsing context. (completed 2026-03-28)
 - [ ] **Phase 6: Completion Tracking & Next Puzzle Flow** - Mark solved puzzles, persist progress, and guide players forward.
 - [ ] **Phase 7: First-Use Tutorial** - Teach new players the rules and allow tutorial replay later.
@@ -78,8 +78,8 @@ Plans:
   3. Player can reset the current puzzle back to a clean unsolved state.
 **Plans**: 2 plans
 Plans:
-- [ ] 04-01-PLAN.md — Add puzzle-scoped correction history plus compact Undo/Reset controls with smart confirmation
-- [ ] 04-02-PLAN.md — Add direct board rectangle removal and regression coverage for remove+undo+drag behavior
+- [x] 04-01-PLAN.md — Add puzzle-scoped correction history plus compact Undo/Reset controls with smart confirmation
+- [x] 04-02-PLAN.md — Add direct board rectangle removal and regression coverage for remove+undo+drag behavior
 **UI hint**: yes
 
 ### Phase 5: Puzzle Browser & Session Context
@@ -139,8 +139,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 |-------|----------------|--------|-----------|
 | 1. Starter Pack Board Shell | 4/4 | Complete | 2026-03-27 |
 | 2. Deterministic Rectangle Rules | 3/3 | Complete | 2026-03-28 |
-| 3. Live Rectangle Placement | 2/2 | In Progress | - |
-| 4. Correction Controls | 1/2 | In Progress|  |
+| 3. Live Rectangle Placement | 2/2 | Complete | 2026-03-28 |
+| 4. Correction Controls | 2/2 | Complete    | 2026-03-28 |
 | 5. Puzzle Browser & Session Context | 2/2 | Complete    | 2026-03-28 |
 | 6. Completion Tracking & Next Puzzle Flow | 0/TBD | Not started | - |
 | 7. First-Use Tutorial | 0/TBD | Not started | - |

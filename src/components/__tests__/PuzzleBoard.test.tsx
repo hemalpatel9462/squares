@@ -53,7 +53,7 @@ describe("App", () => {
     expect(screen.getByRole("region", { name: /puzzle easy-001 board shell/i })).toBeInTheDocument();
     expect(screen.getByText("Puzzle easy-001")).toBeInTheDocument();
     expect(screen.getByText("Easy")).toBeInTheDocument();
-    expect(screen.getByText("Puzzle 1 of 40")).toBeInTheDocument();
+    expect(screen.getByLabelText("Puzzle 1 of 40")).toHaveTextContent("1/40");
 
     const board = screen.getAllByRole("img", { name: /4 by 4 puzzle board/i }).at(-1);
     expect(board).toBeDefined();

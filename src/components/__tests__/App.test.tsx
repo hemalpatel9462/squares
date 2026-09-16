@@ -17,32 +17,29 @@ function openPuzzleFromBrowser(puzzleId = "easy-001") {
 }
 
 describe("App", () => {
-  it("advances to the next puzzle and updates pack progress", () => {
+  it("opens another puzzle from the browser and updates pack progress", () => {
     render(<App />);
     openPuzzleFromBrowser();
 
     expect(screen.getByText("Puzzle easy-001")).toBeInTheDocument();
-    expect(screen.getByText("Puzzle 1 of 40")).toBeInTheDocument();
+    expect(screen.getByText("1/40")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Next Puzzle" }));
+    fireEvent.click(screen.getByRole("button", { name: "Back to Browser" }));
+    fireEvent.click(screen.getByRole("button", { name: "Puzzle easy-002" }));
 
     expect(screen.getByText("Puzzle easy-002")).toBeInTheDocument();
-    expect(screen.getByText("Puzzle 2 of 40")).toBeInTheDocument();
+    expect(screen.getByText("2/40")).toBeInTheDocument();
   });
 
-  it("disables previous on the first puzzle and next on the fortieth puzzle", () => {
+  it("uses compact icon controls on the play screen", () => {
     render(<App />);
     openPuzzleFromBrowser();
 
-    expect(screen.getByRole("button", { name: "Previous" })).toBeDisabled();
-
-    for (let index = 1; index < 40; index += 1) {
-      fireEvent.click(screen.getByRole("button", { name: "Next Puzzle" }));
-    }
-
-    expect(screen.getByText("Puzzle hard-012")).toBeInTheDocument();
-    expect(screen.getByText("Puzzle 40 of 40")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Next Puzzle" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Back to Browser" })).toHaveTextContent("←");
+    expect(screen.getByRole("button", { name: "Undo last placement" })).toHaveTextContent("↶");
+    expect(screen.getByRole("button", { name: "Reset puzzle" })).toHaveTextContent("↺");
+    expect(screen.queryByRole("button", { name: "Previous" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Next Puzzle" })).not.toBeInTheDocument();
   });
 
   it("renders metadata and board inside one framed premium shell with the phase tokens", () => {
@@ -57,7 +54,7 @@ describe("App", () => {
     expect(shell).toContainElement(board);
     expect(shellText).toContain("Puzzle easy-001");
     expect(shellText).toContain("Easy");
-    expect(shellText).toContain("Puzzle 1 of 40");
+    expect(shellText).toContain("1/40");
     expect(screen.getByRole("button", { name: "Back to Browser" })).toBeInTheDocument();
     expect(shell.className).toContain("puzzle-shell");
     expect(tokensCss).toContain("--color-dominant: #F3EEE4;");

@@ -1,0 +1,3607 @@
+{
+  "game": "Squares",
+  "version": "1.0.0",
+  "format": "starter-pack",
+  "notes": [
+    "Rectangle-only MVP pack.",
+    "Each puzzle includes one valid solution partition.",
+    "Useful for bundled content and for testing the GSD/Codex workflow.",
+    "This pack is not uniqueness-verified by a solver; it is intended as a starter content pack."
+  ],
+  "counts": {
+    "total": 40,
+    "easy": 14,
+    "medium": 14,
+    "hard": 12
+  },
+  "puzzles": [
+    {
+      "id": "easy-001",
+      "size": 4,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "value": 6
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 2
+        }
+      ],
+      "solution": [
+        {
+          "row": 2,
+          "col": 0,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "easy-002",
+      "size": 4,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "value": 2
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "value": 8
+        }
+      ],
+      "solution": [
+        {
+          "row": 2,
+          "col": 0,
+          "width": 4,
+          "height": 2,
+          "area": 8
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        }
+      ]
+    },
+    {
+      "id": "easy-003",
+      "size": 4,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 6
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "easy-004",
+      "size": 4,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "value": 2
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 8
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "value": 4
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "easy-005",
+      "size": 4,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 3,
+          "value": 2
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 8
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "value": 2
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        }
+      ]
+    },
+    {
+      "id": "easy-006",
+      "size": 4,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "value": 8
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 2,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "easy-007",
+      "size": 5,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 1,
+          "value": 10
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "value": 2
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "value": 3
+        },
+        {
+          "row": 4,
+          "col": 4,
+          "value": 6
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 5,
+          "area": 10
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "easy-008",
+      "size": 5,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "value": 3
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "value": 6
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "value": 10
+        }
+      ],
+      "solution": [
+        {
+          "row": 3,
+          "col": 0,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        }
+      ]
+    },
+    {
+      "id": "easy-009",
+      "size": 5,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "value": 6
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 4,
+          "col": 4,
+          "value": 10
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 2,
+          "height": 5,
+          "area": 10
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        }
+      ]
+    },
+    {
+      "id": "easy-010",
+      "size": 5,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 2,
+          "value": 3
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "value": 6
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "value": 10
+        }
+      ],
+      "solution": [
+        {
+          "row": 3,
+          "col": 0,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        }
+      ]
+    },
+    {
+      "id": "easy-011",
+      "size": 5,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "value": 6
+        },
+        {
+          "row": 4,
+          "col": 2,
+          "value": 10
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "width": 2,
+          "height": 5,
+          "area": 10
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        }
+      ]
+    },
+    {
+      "id": "easy-012",
+      "size": 5,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "value": 3
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "value": 10
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "value": 4
+        },
+        {
+          "row": 4,
+          "col": 2,
+          "value": 6
+        }
+      ],
+      "solution": [
+        {
+          "row": 1,
+          "col": 0,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        }
+      ]
+    },
+    {
+      "id": "easy-013",
+      "size": 5,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "value": 6
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "value": 3
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 10
+        }
+      ],
+      "solution": [
+        {
+          "row": 3,
+          "col": 0,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "easy-014",
+      "size": 5,
+      "difficulty": "easy",
+      "clues": [
+        {
+          "row": 0,
+          "col": 4,
+          "value": 6
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 10
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "value": 2
+        }
+      ],
+      "solution": [
+        {
+          "row": 2,
+          "col": 0,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        }
+      ]
+    },
+    {
+      "id": "medium-001",
+      "size": 5,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 1,
+          "value": 8
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "value": 6
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "value": 3
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "value": 4
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "value": 2
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 2,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "medium-002",
+      "size": 5,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 1,
+          "value": 6
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "value": 8
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "value": 2
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "value": 2
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "width": 4,
+          "height": 2,
+          "area": 8
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        }
+      ]
+    },
+    {
+      "id": "medium-003",
+      "size": 6,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 1,
+          "col": 2,
+          "value": 4
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "value": 6
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "value": 9
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "value": 12
+        },
+        {
+          "row": 5,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 5,
+          "col": 5,
+          "value": 3
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 3,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 6,
+          "area": 12
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 1,
+          "height": 4,
+          "area": 4
+        },
+        {
+          "row": 4,
+          "col": 2,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 5,
+          "col": 3,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        }
+      ]
+    },
+    {
+      "id": "medium-004",
+      "size": 6,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 2,
+          "value": 4
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "value": 2
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 9
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "value": 6
+        },
+        {
+          "row": 3,
+          "col": 5,
+          "value": 3
+        },
+        {
+          "row": 4,
+          "col": 4,
+          "value": 10
+        },
+        {
+          "row": 5,
+          "col": 5,
+          "value": 2
+        }
+      ],
+      "solution": [
+        {
+          "row": 4,
+          "col": 0,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        },
+        {
+          "row": 4,
+          "col": 5,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 5,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        }
+      ]
+    },
+    {
+      "id": "medium-005",
+      "size": 6,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 5,
+          "value": 12
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "value": 9
+        },
+        {
+          "row": 4,
+          "col": 4,
+          "value": 6
+        }
+      ],
+      "solution": [
+        {
+          "row": 3,
+          "col": 0,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 6,
+          "height": 2,
+          "area": 12
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "medium-006",
+      "size": 6,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 8
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "value": 12
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "value": 2
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "value": 6
+        },
+        {
+          "row": 4,
+          "col": 5,
+          "value": 4
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "value": 4
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 2,
+          "width": 2,
+          "height": 6,
+          "area": 12
+        },
+        {
+          "row": 4,
+          "col": 4,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "medium-007",
+      "size": 6,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "value": 2
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "value": 6
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "value": 12
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "value": 9
+        },
+        {
+          "row": 5,
+          "col": 5,
+          "value": 3
+        }
+      ],
+      "solution": [
+        {
+          "row": 1,
+          "col": 0,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "width": 3,
+          "height": 4,
+          "area": 12
+        },
+        {
+          "row": 5,
+          "col": 3,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        }
+      ]
+    },
+    {
+      "id": "medium-008",
+      "size": 6,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 3,
+          "value": 10
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "value": 3
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "value": 8
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 5,
+          "col": 1,
+          "value": 3
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 1,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 1,
+          "height": 4,
+          "area": 4
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 5,
+          "col": 1,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "medium-009",
+      "size": 6,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 2,
+          "col": 1,
+          "value": 12
+        },
+        {
+          "row": 2,
+          "col": 5,
+          "value": 6
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "value": 4
+        },
+        {
+          "row": 5,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "row": 5,
+          "col": 2,
+          "value": 3
+        },
+        {
+          "row": 5,
+          "col": 5,
+          "value": 3
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 4,
+          "height": 3,
+          "area": 12
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 3,
+          "col": 5,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 5,
+          "col": 2,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "medium-010",
+      "size": 6,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "value": 4
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "value": 6
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "value": 9
+        },
+        {
+          "row": 4,
+          "col": 4,
+          "value": 6
+        },
+        {
+          "row": 4,
+          "col": 5,
+          "value": 3
+        }
+      ],
+      "solution": [
+        {
+          "row": 1,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 3,
+          "col": 5,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        }
+      ]
+    },
+    {
+      "id": "medium-011",
+      "size": 7,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 5,
+          "value": 3
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 5
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "value": 8
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "value": 5
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "value": 9
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "row": 4,
+          "col": 5,
+          "value": 3
+        },
+        {
+          "row": 6,
+          "col": 4,
+          "value": 10
+        },
+        {
+          "row": 6,
+          "col": 6,
+          "value": 4
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 3,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 4,
+          "col": 4,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        },
+        {
+          "row": 5,
+          "col": 5,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "medium-012",
+      "size": 7,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 5,
+          "value": 8
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "value": 5
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "value": 6
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "value": 15
+        },
+        {
+          "row": 2,
+          "col": 6,
+          "value": 4
+        },
+        {
+          "row": 4,
+          "col": 6,
+          "value": 3
+        },
+        {
+          "row": 6,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 6,
+          "col": 5,
+          "value": 6
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 4,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 0,
+          "col": 6,
+          "width": 1,
+          "height": 4,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "width": 3,
+          "height": 5,
+          "area": 15
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 4,
+          "col": 4,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 5,
+          "col": 4,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        }
+      ]
+    },
+    {
+      "id": "medium-013",
+      "size": 7,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 2,
+          "value": 3
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "value": 2
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "value": 8
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "value": 6
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "value": 12
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "value": 3
+        },
+        {
+          "row": 4,
+          "col": 5,
+          "value": 6
+        },
+        {
+          "row": 6,
+          "col": 4,
+          "value": 5
+        }
+      ],
+      "solution": [
+        {
+          "row": 6,
+          "col": 0,
+          "width": 5,
+          "height": 1,
+          "area": 5
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 4,
+          "col": 5,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "width": 4,
+          "height": 3,
+          "area": 12
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        }
+      ]
+    },
+    {
+      "id": "medium-014",
+      "size": 7,
+      "difficulty": "medium",
+      "clues": [
+        {
+          "row": 0,
+          "col": 2,
+          "value": 5
+        },
+        {
+          "row": 1,
+          "col": 6,
+          "value": 5
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "value": 10
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "value": 12
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "value": 3
+        },
+        {
+          "row": 5,
+          "col": 1,
+          "value": 4
+        },
+        {
+          "row": 5,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 5,
+          "col": 4,
+          "value": 8
+        }
+      ],
+      "solution": [
+        {
+          "row": 5,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 5,
+          "area": 10
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 0,
+          "col": 6,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 5,
+          "col": 2,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 5,
+          "col": 3,
+          "width": 4,
+          "height": 2,
+          "area": 8
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 3,
+          "height": 4,
+          "area": 12
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        }
+      ]
+    },
+    {
+      "id": "hard-001",
+      "size": 7,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "value": 3
+        },
+        {
+          "row": 0,
+          "col": 6,
+          "value": 6
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "value": 3
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "value": 6
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "value": 5
+        },
+        {
+          "row": 5,
+          "col": 3,
+          "value": 9
+        },
+        {
+          "row": 6,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 6,
+          "col": 5,
+          "value": 8
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 5,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 3,
+          "col": 5,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 1,
+          "height": 4,
+          "area": 4
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 4,
+          "col": 2,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        }
+      ]
+    },
+    {
+      "id": "hard-002",
+      "size": 7,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 1,
+          "col": 4,
+          "value": 10
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "value": 5
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "value": 8
+        },
+        {
+          "row": 4,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 5,
+          "col": 1,
+          "value": 6
+        },
+        {
+          "row": 5,
+          "col": 4,
+          "value": 4
+        },
+        {
+          "row": 6,
+          "col": 6,
+          "value": 14
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 5,
+          "width": 2,
+          "height": 7,
+          "area": 14
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 2,
+          "height": 5,
+          "area": 10
+        },
+        {
+          "row": 5,
+          "col": 3,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        }
+      ]
+    },
+    {
+      "id": "hard-003",
+      "size": 7,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "value": 8
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "value": 6
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 5
+        },
+        {
+          "row": 3,
+          "col": 5,
+          "value": 12
+        },
+        {
+          "row": 4,
+          "col": 2,
+          "value": 6
+        },
+        {
+          "row": 6,
+          "col": 2,
+          "value": 3
+        },
+        {
+          "row": 6,
+          "col": 4,
+          "value": 3
+        }
+      ],
+      "solution": [
+        {
+          "row": 2,
+          "col": 0,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 4,
+          "height": 2,
+          "area": 8
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 6,
+          "col": 1,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "width": 3,
+          "height": 4,
+          "area": 12
+        },
+        {
+          "row": 6,
+          "col": 4,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        }
+      ]
+    },
+    {
+      "id": "hard-004",
+      "size": 7,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "value": 4
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "value": 8
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "value": 5
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "value": 15
+        },
+        {
+          "row": 5,
+          "col": 1,
+          "value": 3
+        },
+        {
+          "row": 5,
+          "col": 6,
+          "value": 10
+        }
+      ],
+      "solution": [
+        {
+          "row": 2,
+          "col": 0,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "width": 3,
+          "height": 5,
+          "area": 15
+        },
+        {
+          "row": 2,
+          "col": 5,
+          "width": 2,
+          "height": 5,
+          "area": 10
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 4,
+          "height": 2,
+          "area": 8
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "hard-005",
+      "size": 8,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 1,
+          "value": 6
+        },
+        {
+          "row": 0,
+          "col": 4,
+          "value": 5
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "value": 9
+        },
+        {
+          "row": 4,
+          "col": 4,
+          "value": 25
+        },
+        {
+          "row": 5,
+          "col": 1,
+          "value": 3
+        },
+        {
+          "row": 6,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 7,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 7,
+          "col": 3,
+          "value": 10
+        }
+      ],
+      "solution": [
+        {
+          "row": 6,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 6,
+          "col": 2,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 5,
+          "height": 1,
+          "area": 5
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "width": 5,
+          "height": 5,
+          "area": 25
+        },
+        {
+          "row": 6,
+          "col": 3,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        }
+      ]
+    },
+    {
+      "id": "hard-006",
+      "size": 8,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 1,
+          "col": 3,
+          "value": 15
+        },
+        {
+          "row": 1,
+          "col": 7,
+          "value": 5
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "value": 16
+        },
+        {
+          "row": 2,
+          "col": 5,
+          "value": 10
+        },
+        {
+          "row": 5,
+          "col": 7,
+          "value": 6
+        },
+        {
+          "row": 6,
+          "col": 2,
+          "value": 4
+        },
+        {
+          "row": 6,
+          "col": 6,
+          "value": 2
+        },
+        {
+          "row": 7,
+          "col": 5,
+          "value": 4
+        },
+        {
+          "row": 7,
+          "col": 7,
+          "value": 2
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 8,
+          "area": 16
+        },
+        {
+          "row": 0,
+          "col": 7,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 5,
+          "col": 2,
+          "width": 6,
+          "height": 1,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 3,
+          "height": 5,
+          "area": 15
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "width": 2,
+          "height": 5,
+          "area": 10
+        },
+        {
+          "row": 7,
+          "col": 2,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        },
+        {
+          "row": 7,
+          "col": 6,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 6,
+          "col": 2,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        },
+        {
+          "row": 6,
+          "col": 6,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        }
+      ]
+    },
+    {
+      "id": "hard-007",
+      "size": 8,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 3,
+          "value": 5
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "value": 12
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "value": 9
+        },
+        {
+          "row": 2,
+          "col": 6,
+          "value": 6
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 4,
+          "col": 6,
+          "value": 2
+        },
+        {
+          "row": 5,
+          "col": 4,
+          "value": 9
+        },
+        {
+          "row": 5,
+          "col": 6,
+          "value": 6
+        },
+        {
+          "row": 7,
+          "col": 1,
+          "value": 8
+        },
+        {
+          "row": 7,
+          "col": 5,
+          "value": 3
+        }
+      ],
+      "solution": [
+        {
+          "row": 4,
+          "col": 0,
+          "width": 1,
+          "height": 4,
+          "area": 4
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 4,
+          "col": 6,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 5,
+          "col": 6,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 3,
+          "height": 4,
+          "area": 12
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 5,
+          "height": 1,
+          "area": 5
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 7,
+          "col": 3,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 1,
+          "col": 6,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        }
+      ]
+    },
+    {
+      "id": "hard-008",
+      "size": 8,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 1,
+          "value": 5
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "value": 6
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "value": 20
+        },
+        {
+          "row": 3,
+          "col": 6,
+          "value": 9
+        },
+        {
+          "row": 5,
+          "col": 3,
+          "value": 5
+        },
+        {
+          "row": 5,
+          "col": 6,
+          "value": 2
+        },
+        {
+          "row": 6,
+          "col": 1,
+          "value": 10
+        },
+        {
+          "row": 6,
+          "col": 6,
+          "value": 4
+        },
+        {
+          "row": 7,
+          "col": 0,
+          "value": 3
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 5,
+          "height": 1,
+          "area": 5
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "width": 5,
+          "height": 4,
+          "area": 20
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 5,
+          "col": 1,
+          "width": 5,
+          "height": 1,
+          "area": 5
+        },
+        {
+          "row": 6,
+          "col": 1,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 2,
+          "col": 5,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 5,
+          "col": 6,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 6,
+          "col": 6,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        }
+      ]
+    },
+    {
+      "id": "hard-009",
+      "size": 8,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 7,
+          "value": 5
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "value": 6
+        },
+        {
+          "row": 2,
+          "col": 5,
+          "value": 16
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "value": 9
+        },
+        {
+          "row": 4,
+          "col": 6,
+          "value": 4
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 6,
+          "col": 4,
+          "value": 15
+        },
+        {
+          "row": 7,
+          "col": 6,
+          "value": 6
+        }
+      ],
+      "solution": [
+        {
+          "row": 5,
+          "col": 6,
+          "width": 2,
+          "height": 3,
+          "area": 6
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 5,
+          "col": 1,
+          "width": 5,
+          "height": 3,
+          "area": 15
+        },
+        {
+          "row": 0,
+          "col": 7,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 4,
+          "height": 4,
+          "area": 16
+        },
+        {
+          "row": 4,
+          "col": 3,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 3,
+          "height": 2,
+          "area": 6
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        }
+      ]
+    },
+    {
+      "id": "hard-010",
+      "size": 8,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "value": 2
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "value": 10
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "value": 4
+        },
+        {
+          "row": 3,
+          "col": 5,
+          "value": 12
+        },
+        {
+          "row": 4,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 4,
+          "col": 2,
+          "value": 20
+        },
+        {
+          "row": 6,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 6,
+          "col": 7,
+          "value": 6
+        }
+      ],
+      "solution": [
+        {
+          "row": 2,
+          "col": 0,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 2,
+          "col": 5,
+          "width": 2,
+          "height": 6,
+          "area": 12
+        },
+        {
+          "row": 2,
+          "col": 7,
+          "width": 1,
+          "height": 6,
+          "area": 6
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "width": 4,
+          "height": 5,
+          "area": 20
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "width": 5,
+          "height": 2,
+          "area": 10
+        }
+      ]
+    },
+    {
+      "id": "hard-011",
+      "size": 8,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "value": 3
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "value": 4
+        },
+        {
+          "row": 1,
+          "col": 6,
+          "value": 9
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "value": 5
+        },
+        {
+          "row": 4,
+          "col": 1,
+          "value": 12
+        },
+        {
+          "row": 6,
+          "col": 4,
+          "value": 2
+        },
+        {
+          "row": 6,
+          "col": 6,
+          "value": 15
+        },
+        {
+          "row": 7,
+          "col": 3,
+          "value": 8
+        }
+      ],
+      "solution": [
+        {
+          "row": 1,
+          "col": 4,
+          "width": 1,
+          "height": 5,
+          "area": 5
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "width": 4,
+          "height": 3,
+          "area": 12
+        },
+        {
+          "row": 0,
+          "col": 0,
+          "width": 2,
+          "height": 1,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "width": 3,
+          "height": 1,
+          "area": 3
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "width": 4,
+          "height": 1,
+          "area": 4
+        },
+        {
+          "row": 6,
+          "col": 0,
+          "width": 4,
+          "height": 2,
+          "area": 8
+        },
+        {
+          "row": 6,
+          "col": 4,
+          "width": 1,
+          "height": 2,
+          "area": 2
+        },
+        {
+          "row": 0,
+          "col": 5,
+          "width": 3,
+          "height": 3,
+          "area": 9
+        },
+        {
+          "row": 3,
+          "col": 5,
+          "width": 3,
+          "height": 5,
+          "area": 15
+        }
+      ]
+    },
+    {
+      "id": "hard-012",
+      "size": 8,
+      "difficulty": "hard",
+      "clues": [
+        {
+          "row": 0,
+          "col": 4,
+          "value": 16
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "value": 3
+        },
+        {
+          "row": 3,
+          "col": 4,
+          "value": 15
+        },
+        {
+          "row": 3,
+          "col": 6,
+          "value": 8
+        },
+        {
+          "row": 5,
+          "col": 5,
+          "value": 6
+        },
+        {
+          "row": 6,
+          "col": 4,
+          "value": 12
+        },
+        {
+          "row": 6,
+          "col": 6,
+          "value": 4
+        }
+      ],
+      "solution": [
+        {
+          "row": 0,
+          "col": 0,
+          "width": 8,
+          "height": 2,
+          "area": 16
+        },
+        {
+          "row": 2,
+          "col": 6,
+          "width": 2,
+          "height": 4,
+          "area": 8
+        },
+        {
+          "row": 6,
+          "col": 6,
+          "width": 2,
+          "height": 2,
+          "area": 4
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "width": 1,
+          "height": 3,
+          "area": 3
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "width": 5,
+          "height": 3,
+          "area": 15
+        },
+        {
+          "row": 5,
+          "col": 0,
+          "width": 6,
+          "height": 1,
+          "area": 6
+        },
+        {
+          "row": 6,
+          "col": 0,
+          "width": 6,
+          "height": 2,
+          "area": 12
+        }
+      ]
+    }
+  ]
+}

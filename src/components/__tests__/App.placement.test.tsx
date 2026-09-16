@@ -122,9 +122,7 @@ describe("App placement persistence", () => {
     });
 
     expect(board.querySelector("[data-placed-cell='true']")).toBeNull();
-    expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole("button", { name: "Undo" }));
+    fireEvent.click(screen.getByRole("button", { name: "Undo last placement" }));
 
     expect(board.querySelectorAll("[data-placed-cell='true']")).toHaveLength(
       rectangle.width * rectangle.height,
@@ -148,20 +146,17 @@ describe("App placement persistence", () => {
     expect(board.querySelector("[data-placed-rectangle='1']")).toBeNull();
     expect(board.querySelector("[data-placed-rectangle='0']")).not.toBeNull();
 
-    fireEvent.click(screen.getByRole("button", { name: "Undo" }));
+    fireEvent.click(screen.getByRole("button", { name: "Undo last placement" }));
 
     expect(board.querySelector("[data-placed-rectangle='1']")).not.toBeNull();
     expect(board.querySelector("[data-placed-rectangle='0']")).not.toBeNull();
   });
 
-  test("removes the empty-state prompt after the first valid placement", () => {
+  test("places the first valid rectangle without an empty-state block", () => {
     renderAppInPlay();
-
-    expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
 
     const { rectangle } = placeFirstRectangle();
 
-    expect(screen.queryByLabelText("Placement prompt")).not.toBeInTheDocument();
     expect(screen.getByRole("img", { name: /4 by 4 puzzle board/i }).querySelectorAll("[data-placed-cell='true']")).toHaveLength(rectangle.width * rectangle.height);
   });
 
@@ -174,12 +169,12 @@ describe("App placement persistence", () => {
 
     expect(board.querySelector("[data-placed-cell='true']")).not.toBeNull();
 
-    fireEvent.click(screen.getByRole("button", { name: "Next Puzzle" }));
+    fireEvent.click(screen.getByRole("button", { name: "Back to Browser" }));
+    fireEvent.click(screen.getByRole("button", { name: "Puzzle easy-002" }));
 
     const nextBoard = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
 
     expect(nextBoard.querySelector("[data-placed-cell='true']")).toBeNull();
-    expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
   });
 
   test("restores saved placements when returning to a puzzle", () => {
@@ -187,12 +182,14 @@ describe("App placement persistence", () => {
 
     const { rectangle } = placeFirstRectangle();
 
-    fireEvent.click(screen.getByRole("button", { name: "Next Puzzle" }));
+    fireEvent.click(screen.getByRole("button", { name: "Back to Browser" }));
+    fireEvent.click(screen.getByRole("button", { name: "Puzzle easy-002" }));
 
     const nextBoard = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
     expect(nextBoard.querySelector("[data-placed-cell='true']")).toBeNull();
 
-    fireEvent.click(screen.getByRole("button", { name: "Previous" }));
+    fireEvent.click(screen.getByRole("button", { name: "Back to Browser" }));
+    fireEvent.click(screen.getByRole("button", { name: "Puzzle easy-001" }));
 
     const restoredBoard = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
 
@@ -200,7 +197,6 @@ describe("App placement persistence", () => {
       rectangle.width * rectangle.height,
     );
     expect(restoredBoard.querySelector("[data-placed-rectangle='0']")).not.toBeNull();
-    expect(screen.queryByLabelText("Placement prompt")).not.toBeInTheDocument();
   });
 
   test("undo supports multi-step rollback in order", () => {
@@ -212,17 +208,16 @@ describe("App placement persistence", () => {
     const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
     expect(board.querySelector("[data-placed-rectangle='1']")).not.toBeNull();
 
-    fireEvent.click(screen.getByRole("button", { name: "Undo" }));
+    fireEvent.click(screen.getByRole("button", { name: "Undo last placement" }));
 
     expect(board.querySelector("[data-placed-rectangle='1']")).toBeNull();
     expect(board.querySelectorAll("[data-placed-cell='true']")).toHaveLength(
       rectangle.width * rectangle.height,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Undo" }));
+    fireEvent.click(screen.getByRole("button", { name: "Undo last placement" }));
 
     expect(board.querySelector("[data-placed-cell='true']")).toBeNull();
-    expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
   });
 
   test("reset clears placements when confirmed", () => {
@@ -230,13 +225,12 @@ describe("App placement persistence", () => {
     renderAppInPlay();
 
     placeFirstRectangle();
-    fireEvent.click(screen.getByRole("button", { name: "Reset" }));
+    fireEvent.click(screen.getByRole("button", { name: "Reset puzzle" }));
 
     const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
 
     expect(confirmSpy).toHaveBeenCalledTimes(1);
     expect(board.querySelector("[data-placed-cell='true']")).toBeNull();
-    expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
   });
 
   test("reset keeps placements when confirmation is cancelled", () => {
@@ -244,7 +238,7 @@ describe("App placement persistence", () => {
     renderAppInPlay();
 
     placeFirstRectangle();
-    fireEvent.click(screen.getByRole("button", { name: "Reset" }));
+    fireEvent.click(screen.getByRole("button", { name: "Reset puzzle" }));
 
     const board = screen.getByRole("img", { name: /4 by 4 puzzle board/i });
 
@@ -257,9 +251,8 @@ describe("App placement persistence", () => {
     const confirmSpy = vi.spyOn(window, "confirm");
     renderAppInPlay();
 
-    fireEvent.click(screen.getByRole("button", { name: "Reset" }));
+    fireEvent.click(screen.getByRole("button", { name: "Reset puzzle" }));
 
     expect(confirmSpy).not.toHaveBeenCalled();
-    expect(screen.getByLabelText("Placement prompt")).toBeInTheDocument();
   });
 });

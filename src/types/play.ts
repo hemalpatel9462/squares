@@ -12,6 +12,12 @@ export interface PointerDragSession {
   startClientX: number;
   startClientY: number;
   currentCell: CellCoord;
+  selectionBounds: {
+    minRow: number;
+    maxRow: number;
+    minCol: number;
+    maxCol: number;
+  };
   phase: "armed" | "dragging";
   preview: PlacementAnalysis | null;
 }

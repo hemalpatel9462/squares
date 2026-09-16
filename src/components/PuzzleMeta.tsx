@@ -6,10 +6,14 @@ interface PuzzleMetaProps {
 
 export function PuzzleMeta({ puzzle }: PuzzleMetaProps) {
   return (
-    <div className="meta-strip">
-      <span className="meta-pill meta-pill-accent">{`Puzzle ${puzzle.id}`}</span>
-      <span className="meta-pill">{puzzle.difficultyLabel}</span>
-      <span className="meta-pill">{`Puzzle ${puzzle.packIndex + 1} of ${puzzle.packTotal}`}</span>
+    <div aria-label="Puzzle details" className="meta-strip">
+      <span className="meta-pill meta-pill-accent">{puzzle.difficultyLabel}</span>
+      <span
+        aria-label={`Puzzle progress: ${puzzle.packIndex + 1} of ${puzzle.packTotal}`}
+        className="meta-pill"
+      >
+        {`${puzzle.packIndex + 1} of ${puzzle.packTotal}`}
+      </span>
     </div>
   );
 }

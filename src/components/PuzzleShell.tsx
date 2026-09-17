@@ -78,7 +78,7 @@ export function PuzzleShell({
               >
                 <p className="eyebrow">Completed</p>
                 <p className="completion-panel__meta">
-                  {`${puzzle.difficultyLabel} · Puzzle ${puzzle.packIndex + 1} of ${puzzle.packTotal}`}
+                  {`${puzzle.difficultyLabel} · Puzzle ${puzzle.difficultyIndex + 1} of ${puzzle.difficultyTotal}`}
                 </p>
                 <p aria-label={`Completion time: ${elapsedTime}`} className="completion-panel__time">
                   <span>Time</span>

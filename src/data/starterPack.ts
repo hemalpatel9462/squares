@@ -85,13 +85,26 @@ export const starterPackMeta = {
   total: starterPack.counts.total,
 } as const;
 
+const difficultyIndexes: Record<Difficulty, number> = {
+  easy: 0,
+  medium: 0,
+  hard: 0,
+};
+
 export const starterPackPuzzles: PuzzleListItem[] = starterPack.puzzles.map(
-  (puzzle: PuzzleRecord, index) => ({
-    ...puzzle,
-    packIndex: index,
-    packTotal: starterPack.counts.total,
-    difficultyLabel: DIFFICULTY_LABELS[puzzle.difficulty],
-  }),
+  (puzzle: PuzzleRecord, index) => {
+    const difficultyIndex = difficultyIndexes[puzzle.difficulty];
+    difficultyIndexes[puzzle.difficulty] += 1;
+
+    return {
+      ...puzzle,
+      difficultyIndex,
+      difficultyTotal: starterPack.counts[puzzle.difficulty],
+      packIndex: index,
+      packTotal: starterPack.counts.total,
+      difficultyLabel: DIFFICULTY_LABELS[puzzle.difficulty],
+    };
+  },
 );
 
 export function getPuzzleById(id: string): PuzzleListItem | undefined {

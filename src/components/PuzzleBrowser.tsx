@@ -89,8 +89,8 @@ export function PuzzleBrowser({
         id={panelId}
         role="tabpanel"
       >
-        {visiblePuzzles.map((puzzle, index) => {
-          const puzzleNumber = index + 1;
+        {visiblePuzzles.map((puzzle) => {
+          const puzzleNumber = puzzle.difficultyIndex + 1;
           const isCompleted = completedPuzzleIds.has(puzzle.id);
 
           return (

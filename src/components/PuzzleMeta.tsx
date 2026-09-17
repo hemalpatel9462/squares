@@ -12,10 +12,10 @@ export function PuzzleMeta({ elapsedTime, puzzle }: PuzzleMetaProps) {
     <div aria-label="Puzzle details" className="meta-strip">
       <span className="meta-pill meta-pill-accent">{puzzle.difficultyLabel}</span>
       <span
-        aria-label={`Puzzle progress: ${puzzle.packIndex + 1} of ${puzzle.packTotal}`}
+        aria-label={`Puzzle progress: ${puzzle.difficultyIndex + 1} of ${puzzle.difficultyTotal}`}
         className="meta-pill"
       >
-        {`${puzzle.packIndex + 1} of ${puzzle.packTotal}`}
+        {`${puzzle.difficultyIndex + 1} of ${puzzle.difficultyTotal}`}
       </span>
       <span
         aria-label={`Elapsed time: ${elapsedTime}`}

@@ -39,6 +39,8 @@ export interface StarterPackRecord {
 }
 
 export interface PuzzleListItem extends PuzzleRecord {
+  difficultyIndex: number;
+  difficultyTotal: number;
   packIndex: number;
   packTotal: number;
   difficultyLabel: "Easy" | "Medium" | "Hard";

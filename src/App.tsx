@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
 import PuzzleBrowser from "@/components/PuzzleBrowser";
+import GameTour from "@/components/GameTour";
 import PuzzleShell from "@/components/PuzzleShell";
+import StartScreen from "@/components/StartScreen";
 import { getPuzzleById, getPuzzleByIndex, starterPackPuzzles } from "@/data/starterPack";
 import { analyzeBoard, analyzePlacement } from "@/rules";
 import type { PlacementSnapshot, PuzzlePlacementHistory } from "@/types/play";
@@ -11,6 +13,7 @@ import type { CandidatePlacement } from "@/types/rules";
 const EMPTY_PLACEMENT_SNAPSHOT: PlacementSnapshot = [];
 const SELECTED_DIFFICULTY_STORAGE_KEY = "squares.selectedDifficulty.v1";
 const COMPLETED_PUZZLES_STORAGE_KEY = "squares.completedPuzzleIds.v1";
+const HAS_SEEN_TOUR_STORAGE_KEY = "squares.hasSeenTour.v1";
 
 function isDifficulty(value: string | null): value is Difficulty {
   return value === "easy" || value === "medium" || value === "hard";
@@ -53,6 +56,14 @@ function resolveInitialCompletedPuzzleIds(): string[] {
   }
 }
 
+function hasSeenTour(): boolean {
+  try {
+    return window.localStorage.getItem(HAS_SEEN_TOUR_STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
 function getPuzzleHistory(
   historyByPuzzleId: Record<string, PuzzlePlacementHistory>,
   puzzleId: string,
@@ -80,7 +91,7 @@ function pushPuzzleSnapshot(
 }
 
 export default function App() {
-  const [activeView, setActiveView] = useState<"browser" | "play">("browser");
+  const [activeView, setActiveView] = useState<"start" | "browser" | "play">("start");
   const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState(0);
   const [placementHistoryByPuzzleId, setPlacementHistoryByPuzzleId] = useState<
     Record<string, PuzzlePlacementHistory>
@@ -88,6 +99,7 @@ export default function App() {
   const [completedPuzzleIds, setCompletedPuzzleIds] = useState<Set<string>>(
     () => new Set(resolveInitialCompletedPuzzleIds()),
   );
+  const [isTourOpen, setIsTourOpen] = useState(() => !hasSeenTour());
   const currentPuzzle = getPuzzleByIndex(currentPuzzleIndex);
   const currentHistory = currentPuzzle
     ? getPuzzleHistory(placementHistoryByPuzzleId, currentPuzzle.id)
@@ -262,17 +274,31 @@ export default function App() {
     });
   }
 
+  function handleCloseTour() {
+    setIsTourOpen(false);
+
+    try {
+      window.localStorage.setItem(HAS_SEEN_TOUR_STORAGE_KEY, "true");
+    } catch {
+      // Ignore persistence errors so the tour can still be dismissed.
+    }
+  }
+
   return (
     <main className={`app-shell${activeView === "play" ? " app-shell--play" : ""}`}>
       <div aria-hidden="true" className="ambient-glow ambient-glow-left" />
       <div aria-hidden="true" className="ambient-glow ambient-glow-right" />
-      {activeView === "browser" ? (
+      {activeView === "start" ? (
+        <StartScreen onStart={() => setActiveView("browser")} />
+      ) : activeView === "browser" ? (
           <PuzzleBrowser
           completedPuzzleIds={completedPuzzleIds}
           puzzles={starterPackPuzzles}
           selectedDifficulty={selectedDifficulty}
           onSelectDifficulty={setSelectedDifficulty}
           onSelectPuzzle={handleSelectPuzzle}
+          onStartTour={() => setIsTourOpen(true)}
+          onBackToStart={() => setActiveView("start")}
         />
       ) : (
         <>
@@ -295,6 +321,7 @@ export default function App() {
           <div aria-hidden="true" data-board-solved={currentBoardAnalysis?.isSolved ?? false} hidden />
         </>
       )}
+      <GameTour isOpen={isTourOpen && activeView !== "start"} onClose={handleCloseTour} />
     </main>
   );
 }

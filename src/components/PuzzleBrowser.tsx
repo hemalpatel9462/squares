@@ -1,3 +1,5 @@
+import { ArrowLeft } from "lucide-react";
+
 import type { Difficulty, PuzzleListItem } from "@/types/puzzle";
 
 interface PuzzleBrowserProps {
@@ -6,6 +8,8 @@ interface PuzzleBrowserProps {
   selectedDifficulty: Difficulty;
   onSelectDifficulty: (difficulty: Difficulty) => void;
   onSelectPuzzle: (selection: { puzzleId: string; difficulty: Difficulty }) => void;
+  onStartTour?: () => void;
+  onBackToStart?: () => void;
 }
 
 const DIFFICULTY_TABS: Array<{ difficulty: Difficulty; label: "Easy" | "Medium" | "Hard" }> = [
@@ -20,6 +24,8 @@ export function PuzzleBrowser({
   selectedDifficulty,
   onSelectDifficulty,
   onSelectPuzzle,
+  onStartTour,
+  onBackToStart,
 }: PuzzleBrowserProps) {
   const panelId = "puzzle-browser-panel";
 
@@ -31,7 +37,27 @@ export function PuzzleBrowser({
     <section className="puzzle-browser" aria-label="Puzzle browser">
       <header className="puzzle-browser__header">
         <p className="eyebrow">Starter Pack</p>
-        <h1 className="puzzle-shell__title">Choose a Puzzle</h1>
+        <div className="puzzle-browser__title-row">
+          <div className="puzzle-browser__title-heading">
+            {onBackToStart ? (
+              <button
+                aria-label="Back to start screen"
+                className="puzzle-browser__back-button"
+                onClick={onBackToStart}
+                title="Back to start screen"
+                type="button"
+              >
+                <ArrowLeft aria-hidden="true" className="icon" />
+              </button>
+            ) : null}
+            <h1 className="puzzle-shell__title">Choose a Puzzle</h1>
+          </div>
+          {onStartTour ? (
+            <button className="puzzle-browser__tour-button" onClick={onStartTour} type="button">
+              How to Play
+            </button>
+          ) : null}
+        </div>
       </header>
 
       <div className="puzzle-browser__tabs" role="tablist" aria-label="Browse by difficulty">

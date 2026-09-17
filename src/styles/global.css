@@ -477,6 +477,18 @@ select {
   color: #8d4725;
 }
 
+.meta-pill-timer {
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.48);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.meta-pill-timer .icon {
+  width: 16px;
+  height: 16px;
+}
+
 .puzzle-navigator {
   display: flex;
   flex-wrap: wrap;
@@ -608,6 +620,21 @@ select {
   font-size: var(--font-label-size);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.02em;
+}
+
+.completion-panel__time {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: var(--space-md) 0 0;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.completion-panel__time strong {
+  color: var(--color-text);
+  font-size: var(--font-heading-size);
+  font-weight: var(--font-weight-semibold);
 }
 
 .completion-panel__actions {

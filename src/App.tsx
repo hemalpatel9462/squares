@@ -15,6 +15,34 @@ const SELECTED_DIFFICULTY_STORAGE_KEY = "squares.selectedDifficulty.v1";
 const COMPLETED_PUZZLES_STORAGE_KEY = "squares.completedPuzzleIds.v1";
 const HAS_SEEN_TOUR_STORAGE_KEY = "squares.hasSeenTour.v1";
 
+interface PuzzleTimerState {
+  elapsedMs: number;
+  startedAtMs: number | null;
+}
+
+function getElapsedMilliseconds(timer: PuzzleTimerState, now: number): number {
+  if (timer.startedAtMs === null) {
+    return timer.elapsedMs;
+  }
+
+  return timer.elapsedMs + Math.max(0, now - timer.startedAtMs);
+}
+
+function formatElapsedTime(elapsedMs: number): string {
+  const totalSeconds = Math.floor(elapsedMs / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  if (hours > 0) {
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
+  }
+
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+}
+
 function isDifficulty(value: string | null): value is Difficulty {
   return value === "easy" || value === "medium" || value === "hard";
 }
@@ -99,6 +127,8 @@ export default function App() {
   const [completedPuzzleIds, setCompletedPuzzleIds] = useState<Set<string>>(
     () => new Set(resolveInitialCompletedPuzzleIds()),
   );
+  const [timerByPuzzleId, setTimerByPuzzleId] = useState<Record<string, PuzzleTimerState>>({});
+  const [timerNow, setTimerNow] = useState(() => Date.now());
   const [isTourOpen, setIsTourOpen] = useState(() => !hasSeenTour());
   const currentPuzzle = getPuzzleByIndex(currentPuzzleIndex);
   const currentHistory = currentPuzzle
@@ -111,6 +141,9 @@ export default function App() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>(() =>
     resolveInitialDifficulty(currentPuzzle?.difficulty ?? "easy")
   );
+  const currentTimer = currentPuzzle ? timerByPuzzleId[currentPuzzle.id] : undefined;
+  const currentElapsedMs = currentTimer ? getElapsedMilliseconds(currentTimer, timerNow) : 0;
+  const currentElapsedTime = formatElapsedTime(currentElapsedMs);
 
   useEffect(() => {
     try {
@@ -119,6 +152,62 @@ export default function App() {
       // Ignore persistence errors to keep play flow working.
     }
   }, [selectedDifficulty]);
+
+  useEffect(() => {
+    if (!currentPuzzle) {
+      return;
+    }
+
+    const now = Date.now();
+    const shouldRun = activeView === "play" && !currentBoardAnalysis?.isSolved;
+    setTimerNow(now);
+
+    setTimerByPuzzleId((currentTimers) => {
+      const currentTimer = currentTimers[currentPuzzle.id];
+
+      if (!currentTimer) {
+        return shouldRun
+          ? {
+              ...currentTimers,
+              [currentPuzzle.id]: { elapsedMs: 0, startedAtMs: now },
+            }
+          : currentTimers;
+      }
+
+      if (shouldRun) {
+        return currentTimer.startedAtMs === null
+          ? {
+              ...currentTimers,
+              [currentPuzzle.id]: { ...currentTimer, startedAtMs: now },
+            }
+          : currentTimers;
+      }
+
+      if (currentTimer.startedAtMs === null) {
+        return currentTimers;
+      }
+
+      return {
+        ...currentTimers,
+        [currentPuzzle.id]: {
+          elapsedMs: getElapsedMilliseconds(currentTimer, now),
+          startedAtMs: null,
+        },
+      };
+    });
+  }, [activeView, currentBoardAnalysis?.isSolved, currentPuzzle?.id]);
+
+  useEffect(() => {
+    if (activeView !== "play" || !currentPuzzle || currentBoardAnalysis?.isSolved) {
+      return;
+    }
+
+    const timerInterval = window.setInterval(() => {
+      setTimerNow(Date.now());
+    }, 1000);
+
+    return () => window.clearInterval(timerInterval);
+  }, [activeView, currentBoardAnalysis?.isSolved, currentPuzzle?.id]);
 
   useEffect(() => {
     if (!currentPuzzle || !currentBoardAnalysis?.isSolved || completedPuzzleIds.has(currentPuzzle.id)) {
@@ -173,9 +262,30 @@ export default function App() {
       return;
     }
 
+    pausePuzzleTimer(puzzle.id);
     setCurrentPuzzleIndex(selectedPuzzle.packIndex);
     setSelectedDifficulty(selectedPuzzle.difficulty);
     setActiveView("play");
+  }
+
+  function pausePuzzleTimer(puzzleId: string) {
+    const now = Date.now();
+    setTimerNow(now);
+    setTimerByPuzzleId((currentTimers) => {
+      const currentTimer = currentTimers[puzzleId];
+
+      if (!currentTimer || currentTimer.startedAtMs === null) {
+        return currentTimers;
+      }
+
+      return {
+        ...currentTimers,
+        [puzzleId]: {
+          elapsedMs: getElapsedMilliseconds(currentTimer, now),
+          startedAtMs: null,
+        },
+      };
+    });
   }
 
   function handlePlaceRectangle(placement: CandidatePlacement) {
@@ -263,15 +373,22 @@ export default function App() {
   }
 
   function handleReplay() {
+    const currentHistory = getPuzzleHistory(placementHistoryByPuzzleId, puzzle.id);
+
+    if (currentHistory.present.length === 0) {
+      return;
+    }
+
     setPlacementHistoryByPuzzleId((currentByPuzzleId) => {
-      const currentHistory = getPuzzleHistory(currentByPuzzleId, puzzle.id);
-
-      if (currentHistory.present.length === 0) {
-        return currentByPuzzleId;
-      }
-
       return pushPuzzleSnapshot(currentByPuzzleId, puzzle.id, EMPTY_PLACEMENT_SNAPSHOT);
     });
+
+    const now = Date.now();
+    setTimerNow(now);
+    setTimerByPuzzleId((currentTimers) => ({
+      ...currentTimers,
+      [puzzle.id]: { elapsedMs: 0, startedAtMs: now },
+    }));
   }
 
   function handleCloseTour() {
@@ -306,6 +423,7 @@ export default function App() {
             canUndo={currentHistory.past.length > 0}
             canGoNext={getPuzzleByIndex(currentPuzzleIndex + 1) !== undefined}
             onBackToBrowser={() => {
+              pausePuzzleTimer(puzzle.id);
               setActiveView("browser");
             }}
             onNext={handleNextPuzzle}
@@ -316,6 +434,7 @@ export default function App() {
             onReplay={handleReplay}
             placedRectangles={currentPlacements}
             puzzle={puzzle}
+            elapsedTime={currentElapsedTime}
             isComplete={currentBoardAnalysis?.isSolved ?? false}
           />
           <div aria-hidden="true" data-board-solved={currentBoardAnalysis?.isSolved ?? false} hidden />

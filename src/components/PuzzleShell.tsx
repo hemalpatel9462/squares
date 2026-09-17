@@ -19,6 +19,7 @@ interface PuzzleShellProps {
   placedRectangles?: CandidatePlacement[];
   onPlaceRectangle?: (placement: CandidatePlacement) => void;
   onRemoveRectangle?: (rectangleIndex: number) => void;
+  elapsedTime: string;
 }
 
 export function PuzzleShell({
@@ -33,6 +34,7 @@ export function PuzzleShell({
   onReplay,
   placedRectangles,
   puzzle,
+  elapsedTime,
   isComplete = false,
 }: PuzzleShellProps) {
   return (
@@ -40,7 +42,7 @@ export function PuzzleShell({
       <div className="puzzle-stage">
         <header className="top-bar">
           <PuzzleNavigator onBackToBrowser={onBackToBrowser} />
-          <PuzzleMeta puzzle={puzzle} />
+          <PuzzleMeta elapsedTime={elapsedTime} puzzle={puzzle} />
           <div aria-label="Puzzle actions" className="puzzle-corrections" role="group">
             <button
               aria-label="Undo last placement"
@@ -77,6 +79,10 @@ export function PuzzleShell({
                 <p className="eyebrow">Completed</p>
                 <p className="completion-panel__meta">
                   {`${puzzle.difficultyLabel} · Puzzle ${puzzle.packIndex + 1} of ${puzzle.packTotal}`}
+                </p>
+                <p aria-label={`Completion time: ${elapsedTime}`} className="completion-panel__time">
+                  <span>Time</span>
+                  <strong>{elapsedTime}</strong>
                 </p>
                 <h2 className="completion-panel__title" id="completion-modal-title">
                   Puzzle solved!

@@ -7,7 +7,6 @@ import type {
   CandidatePlacement,
   CellCoord,
   PlacementAnalysis,
-  PlacementIssue,
 } from "@/types/rules";
 
 export const MOUSE_DRAG_THRESHOLD_PX = 6;
@@ -26,25 +25,6 @@ interface PuzzleBoardProps {
 
 function toCellKey(cell: CellCoord): string {
   return `${cell.row}:${cell.col}`;
-}
-
-function getPreviewLabel(issue: PlacementIssue | null): string {
-  switch (issue) {
-    case null:
-      return "Valid";
-    case "missing_origin_clue":
-      return "Missing clue";
-    case "contains_other_clue":
-      return "Contains another clue";
-    case "wrong_area":
-      return "Wrong area";
-    case "out_of_bounds":
-      return "Out of bounds";
-    case "overlap":
-      return "Overlaps another rectangle";
-    default:
-      return "Valid";
-  }
 }
 
 function getDragThreshold(pointerType: string): number {
@@ -437,21 +417,8 @@ export function PuzzleBoard({
     removePlacedRectangleFromTarget(event.target);
   }
 
-  const previewTone = preview?.isValid ? "valid" : "invalid";
-  const previewLabel = preview ? getPreviewLabel(preview.primaryIssue) : null;
-
   return (
     <div className="board-stage">
-      <div className="board-status" aria-live="polite">
-        {preview ? (
-          <div className="board-preview-chip" data-tone={previewTone}>
-            <span>Area {preview.rectangleArea}</span>
-            <span>{previewLabel}</span>
-          </div>
-        ) : (
-          <div className="board-preview-chip board-preview-chip--placeholder" aria-hidden="true" />
-        )}
-      </div>
       <div
         aria-label={`${puzzle.size} by ${puzzle.size} puzzle board`}
         className="board-grid"
